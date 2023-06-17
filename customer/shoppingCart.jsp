@@ -1,3 +1,9 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@page import="java.sql.*"%>
+<%@page import="Servlets.*"%>
+<!DOCTYPE html>
+<html>
 <head>
 <meta charset="UTF-8">
 
@@ -6,6 +12,8 @@
 	rel="stylesheet"
 	integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
 	crossorigin="anonymous">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+	
 <title>Your Cart</title>
 
 </head>
@@ -16,17 +24,7 @@ String Title, Author, ISBN;
 Double Price;
 String results = "";
 try {
-	// Step1: Load JDBC Driver
-	Class.forName("com.mysql.jdbc.Driver");
-
-	// Step 2: Define Connection URL
-	String connURL = "jdbc:mysql://localhost/jad?user=root&password=kairasql&serverTimezone=UTC";
-
-	// Step 3: Establish connection to URL
-	Connection conn = DriverManager.getConnection(connURL);
-	// Step 4: Create Statement object
-	Statement stmt = conn.createStatement();
-	// Step 5: Execute SQL Command
+	Connection conn = DBConnect.getConnectionToDatabase();
 	String sqlStr = "SELECT * FROM jad.books where Price > ?;";
 	PreparedStatement pstmt = conn.prepareStatement(sqlStr);
 	pstmt.setDouble(1,26.0);
@@ -55,11 +53,12 @@ try {
 %>
 
 <body>
+<div class="container-fluid">
 		
-	<div class="sticky-top "><%@ include file="header.jsp"%>
+	<div class="sticky-top ">
+	<%@ include file="header.jsp"%>
 		<div
-			class="px-3 pt-2 text-success-emphasis bg-success-subtle border border-success-subtle ">
-			<div class="row">
+			class="px-3 pt-2 text-success-emphasis bg-success-subtle border border-success-subtle row">
 				<div class="col">
 					<h1 class="display-6">Total Cost: $121.96</h1>
 				</div>
@@ -70,7 +69,7 @@ try {
 					<button class="btn btn-secondary  text-nowrap col-12"
 						style="font-family: Monaco, monospace; font-weight: bold;">Check
 						Out</button>
-				</div>
+				
 			</div>
 		</div>
 	</div>
@@ -80,4 +79,7 @@ try {
 
 		</div>
 		</article>
+		</div>
+		<%@ include file="../footer.html" %>
 </body>
+</html>

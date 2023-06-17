@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,41 +13,36 @@ Date:  2023
 Description: ST0510/JAD CA1 Assignment
 =======================================
 -->
-
 <body>
-	<div class="sticky-top container-fluid"
-		style="background-color: rgb(52, 78, 65);">
-		<nav class="navbar" data-bs-theme="dark">
-			<a
-				style="font-family: Copperplate, fantasy; color: white; padding: 5px;"
-				class="navbar-brand">Bookly</a>
-			<button class="navbar-toggler" type="button"
-				data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-			<div class="collapse navbar-collapse" id="navbarSupportedContent">
-				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-					<li class="nav-item"><a class="nav-link" href="../Index.jsp"
-						style="font-family: Monaco, monospace; font-weight: bold;">Home</a>
-					</li>
-					<li class="nav-item"><a class="nav-link"
-						href="../bookList.jsp"
-						style="font-family: Monaco, monospace; font-weight: bold;">Titles</a>
-					</li>
-					<li class="nav-item dropdown"><a
-						class="nav-link dropdown-toggle" href="#" role="button"
-						data-bs-toggle="dropdown"
-						style="font-family: Monaco, monospace; font-weight: bold;">
-							Genres </a>
-						<ul class="dropdown-menu">
-							<li><a class="dropdown-item "
-								href="genrePage.jsp?search=romance">Romance</a></li>
-							<li><a class="dropdown-item"
-								href="genrePage.jsp?search=fantasy">Fantasy</a></li>
-							<li><a class="dropdown-item"
-								href="genrePage.jsp?search=classic">Classic</a></li>
-						</ul></li>
-				</ul>
+<div class="sticky-top row"  style="background-color: rgb(52, 78, 65);">
+<nav class="navbar navbar-expand-lg" data-bs-theme="dark">
+  <div class="container-fluid">
+    <a style="font-family: Copperplate, fantasy; color: white; padding: 5px;" class="navbar-brand">Bookly</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="../public/Index.jsp"
+          style="font-family: Monaco, monospace; font-weight: bold;">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="../public/bookList.jsp"
+          style="font-family: Monaco, monospace; font-weight: bold;">Titles</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"
+          style="font-family: Monaco, monospace; font-weight: bold;">
+            Genres
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="../public/genrePage.jsp?search=romance">Romance</a></li>
+            <li><a class="dropdown-item" href="../public/genrePage.jsp?search=fantasy">Fantasy</a></li>
+            <li><a class="dropdown-item" href="../public/genrePage.jsp?search=classic">Classic</a></li>
+          </ul>
+        </li>
+      </ul>
 				<%
 				if (session.getAttribute("sessUserID") != null) {
 				%>
@@ -80,6 +75,7 @@ Description: ST0510/JAD CA1 Assignment
 					<button class="btn btn-outline-success" type="submit"
 						style="font-family: Monaco, monospace; font-weight: bold;">Search</button>
 				</form>
+			</div>
 			</div>
 		</nav>
 	</div>

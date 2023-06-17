@@ -1,16 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@page import="java.sql.*"%>
+<%@page import="Servlets.*"%>
 <!DOCTYPE html>
 <html>
 <head>
-
-<meta charset="UTF-8">
-
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
 	rel="stylesheet"
 	integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
 	crossorigin="anonymous">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+	
+	</head>
 <title>Your Info</title>
 
 </head>
@@ -27,17 +31,7 @@ String Username = "";
 String Password;
 String results = "";
 try {
-	// Step1: Load JDBC Driver
-	Class.forName("com.mysql.jdbc.Driver");
-
-	// Step 2: Define Connection URL
-	String connURL = "jdbc:mysql://localhost/jad?user=root&password=kairasql&serverTimezone=UTC";
-
-	// Step 3: Establish connection to URL
-	Connection conn = DriverManager.getConnection(connURL);
-	// Step 4: Create Statement object
-	Statement stmt = conn.createStatement();
-	// Step 5: Execute SQL Command
+	Connection conn = DBConnect.getConnectionToDatabase();
 	String sqlStr = "SELECT c.Email, c.First_Name, c.Last_Name, c.Address, u.Username, u.Password FROM jad.customers c, jad.users u WHERE c.User_Id = u.User_Id and c.User_Id = ?";
 	PreparedStatement pstmt = conn.prepareStatement(sqlStr);
 	pstmt.setInt(1, UserId);
@@ -57,9 +51,10 @@ try {
 	//out.print(Address);
 %>
 
-<body>
+<body> 
+<div class=" container-fluid">
 	<%@ include file="header.jsp"%>
-	<div class="row row-cols-2 p-5 container-fluid">
+	<div class="row row-cols-2 m-5">
 		<div class="col ">
 			<form name="memberprofile">
 				<div class="input-group mb-3 ">
@@ -112,6 +107,8 @@ try {
 			</script>
 		</div>
 	</div>
+	</div>
+<%@include file="../footer.html"%>
 </body>
 <%
 // Step 7: Close connection
@@ -120,5 +117,4 @@ conn.close();
 out.println("Error :" + e);
 }
 %>
-<%@include file="../footer.html"%>
 </html>
