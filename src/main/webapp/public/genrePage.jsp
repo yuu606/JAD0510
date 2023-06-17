@@ -73,21 +73,20 @@ try {
 %>
 
 <body>
-	<div class="sticky-top">
-		<%@include file="../header.jsp"%>
+<div class="d-flex flex-column h-100">
+	<%@include file="header.jsp"%>
 		<div
 			class="px-3 p-2 text-success-emphasis bg-success-subtle border border-success-subtle fw-bold">
 			Genre:
 			<div id="searchby" class="badge text-bg-success "
 				style="font-size: 15px;"><%=searched%></div>
-			<a href="">Search again?</a>
+			<a href="Index.jsp">Search again?</a>
 		</div>
-	</div>
 	<article class="container-fluid my-2">
 		<div class=" row justify-content-around g-0" id="Results">
 			<%=results%>
-
 		</div>
 	</article>
 	<%@include file="../footer.html"%>
+</div>
 </html>

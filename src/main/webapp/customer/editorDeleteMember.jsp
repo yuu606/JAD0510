@@ -50,7 +50,7 @@
 			 out.print("edt <br> "+count);
 			 
 			 session.removeAttribute("sessUserId");
-			response.sendRedirect("MembersPage.jsp");
+			response.sendRedirect("membersPage.jsp");
 		}
 		conn.close();
 	} catch (Exception e) {

@@ -1,23 +1,18 @@
 package Servlets;
 
-
+import javax.servlet.http.*;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+
 
 /* 
 =======================================	
-Author: Chong Yu Lin
-Date:  2023
+Author: Chong Yu Lin / Kuek Yi
+Date:  16 June 2023
 Description: ST0510/JAD CA1 Assignment
 =======================================
 */
@@ -43,45 +38,68 @@ public class ProcessSearch extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
+		//create session
+		HttpSession session = request.getSession();
 		
-		Connection connection = null;
-		Statement statement = null;
-		ResultSet resultSet = null;
-
 		String searchTerm = request.getParameter("searchValue");
-
-		try{
-		connection = DBConnect.getConnectionToDatabase();
-		statement = connection.createStatement();
-		String sql = "SELECT * FROM books";
-		resultSet = statement.executeQuery(sql);
-
-		while(resultSet.next()){
+		//boolean found = false;
+		String Title, Author, ISBN;
+		String results = "";
+		String SearchType;
+		try {
+			//Establish connection
+			Connection conn = DBConnect.getConnectionToDatabase();
 			
-			if (searchTerm.equals(resultSet.getString("Title"))){
-				
-				String path = "searchResults.jsp?searched=" + searchTerm;
-				response.sendRedirect(path);
+			//Execute SQL Command
+			String sqlStr = "SELECT Title, Author, ISBN FROM jad.books b, jad.genre g WHERE b.Genre_Id= g.genre_id AND g.genre_name like ?";
+
+			PreparedStatement pstmt = conn.prepareStatement(sqlStr, ResultSet.TYPE_SCROLL_INSENSITIVE,  
+                    ResultSet.CONCUR_UPDATABLE);
+			pstmt.setString(1, searchTerm);
+			ResultSet res = pstmt.executeQuery();
+			res.last();
+			int rowCount = res.getRow();
+			System.out.print(rowCount);
+			res.first();
+			res.previous();
+
+			//Process Result
+			
+			if (rowCount != 0) {
+				while(res.next()) {
+					Title = res.getString("Title");
+					Author = res.getString("Author");
+					ISBN = res.getString("ISBN");
+					results += " <div class='card mb-3' onclick=\"window.location.href='bookDetails.jsp?ISBN=" + ISBN
+							+ "'\" style='max-width: 600px;'><div class='row g-0'><div class='col-md-3'><img src='../Images/" + ISBN
+							+ ".jpg'style='width: auto;height:150px;' class='img-fluid rounded-start'></div><div class='col-md-9'><div class='card-body'><h5 class='card-title'>"
+							+ Title + "</h5><p class='card-text'>By: " + Author + "<p></div></div></div></div>";
+				}
+				SearchType="by GENRE:";
+
+			} else {
+				sqlStr = "SELECT * FROM jad.books WHERE jad.books.Title LIKE ?";			
+				pstmt = conn.prepareStatement(sqlStr);
+				pstmt.setString(1, "%"+searchTerm+"%");
+				res = pstmt.executeQuery();
+				while(res.next()) {
+					Title = res.getString("Title");
+					Author = res.getString("Author");
+					ISBN = res.getString("ISBN");
+					results += " <div class='card mb-3' onclick=\"window.location.href='bookDetails.jsp?ISBN=" + ISBN
+							+ "'\" style='max-width: 600px;'><div class='row g-0'><div class='col-md-3'><img src='../Images/" + ISBN
+							+ ".jpg'style='width: auto;height:150px;' class='img-fluid rounded-start'></div><div class='col-md-9'><div class='card-body'><h5 class='card-title'>"
+							+ Title + "</h5><p class='card-text'>By: " + Author + "<p></div></div></div></div>";
+				}
+				SearchType="by TITLE: ";
 			}
-		}
-		
-		String sql2 = "SELECT * FROM genre";
-		resultSet = statement.executeQuery(sql);
-		
-		while(resultSet.next()){
-			if (searchTerm.equals(resultSet.getString("genre_name"))){
-				
-				String path = "searchResults.jsp?searched=" + searchTerm;
-				response.sendRedirect(path);
-			}
-		}
-		
-		String path = "searchResults.jsp?errCode=404";
-		response.sendRedirect(path);
-		connection.close();
+			session.setAttribute("searchRes",results);
+			response.sendRedirect("public/searchResults.jsp?search="+SearchType+searchTerm);
+			// Step 7: Close connection
+			conn.close();
 		} catch (Exception e) {
-		e.printStackTrace();
-		}
+			response.getWriter().append("Error :" + e);
+		} 
 	}
 
 	/**

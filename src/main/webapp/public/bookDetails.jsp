@@ -76,7 +76,7 @@ try {
 
 <body>
 	<div class="sticky-top">
-		<%@include file="../header.jsp"%>
+		<%@include file="header.jsp"%>
 		<div class="px-3 pt-2 text-success-emphasis bg-success-subtle border border-success-subtle fw-bold">
 			Now viewing:
 			<div id="Title" class="fw-normal" style="display: inline"><%=Title%></div>
@@ -99,7 +99,7 @@ try {
 					onclick="history.back()">Back</button>
 				<button class="btn btn-success  text-nowrap col m-2"
 					style="font-family: Monaco, monospace; font-weight: bold;"
-					onclick="window.location.href =''">Add to Cart</button>
+					onclick="window.location.href ='../MemberInfo/shoppingCart.jsp'">Add to Cart</button>
 			</div>
 			<div class="row"
 				style="border-bottom: 1px solid; border-color: darkolivegreen;">

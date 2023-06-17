@@ -57,7 +57,7 @@
 							style="background-color: rgb(218, 215, 205);">
 							<div class="form-group p-1">
 								<input type="text" class="form-control" name="username"
-									placeholder="Username" required="required">
+									placeholder="Username/Email" required="required">
 							</div>
 							<div class="form-group p-1">
 								<input type="password" class="form-control" name="password"

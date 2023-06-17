@@ -25,9 +25,7 @@
 
 <%
 int UserId;
-
-//session.setAttribute("sessUserID",1);
-UserId = (int) session.getAttribute("sessUserID");
+UserId = Integer.parseInt(request.getParameter("userID"));
 
 String Email = "";
 String First_Name = "";
@@ -67,9 +65,9 @@ try {
 %>
 
 <body>
-		<%@ include file="../header.jsp"%>
+	<%@ include file="header.jsp"%>
 	<div class=" p-5 container-fluid">
-		<form action="EditorDeleteMember.jsp" name="send" method="post" class="row row-cols-2">
+		<form action="editorDeleteMember.jsp" name="send" method="post" class="row row-cols-2">
 			<div class="col">
 				<div class="input-group mb-3 ">
 					<span class="input-group-text" >First Name:</span>
@@ -109,7 +107,7 @@ try {
 					value="confirm edit">
 
 				<button class="btn btn-secondary  text-nowrap col-12 " type='button'
-					onclick="window.location.href='MembersPage.jsp?'">Back</button>
+					onclick="window.location.href='membersPage.jsp'">Back</button>
 			</div>
 		</form>
 	</div>

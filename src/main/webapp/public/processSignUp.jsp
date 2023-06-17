@@ -16,7 +16,9 @@ ResultSet resultSet = null;
 
 String username = request.getParameter("username");
 String password = request.getParameter("password");
+String email = request.getParameter("email");
 String path = "";
+int userRole = 1;
 
 try{
 connection = DBConnect.getConnectionToDatabase();
@@ -32,22 +34,32 @@ while(resultSet.next()){
 	} 
 }
 
-String sql2 = "INSERT INTO users (Username, Password, Role_Id) VALUES (?,?,1);";
+String sql2 = "INSERT INTO users (Username, Password, Role_Id) VALUES (?,?,?);";
 psmt = connection.prepareStatement(sql2);
 psmt.setString(1, username);
 psmt.setString(2, password);
+psmt.setInt(3, userRole);
 psmt.executeUpdate();
 
-String sql3 = "SELECT User_Id FROM users WHERE username = ?";
+String sql3 = "SELECT User_Id FROM users WHERE Username = ?";
 psmt = connection.prepareStatement(sql3);
 psmt.setString(1, username);
 resultSet = psmt.executeQuery();
-while(resultSet.next()){
-	int userID = resultSet.getInt("User_Id");
-	path = "membersPage.jsp?userID=" + userID;
-	response.sendRedirect(path);
-	
-}
+resultSet.next();
+int userID = resultSet.getInt("User_Id");
+
+String sql4 = "INSERT INTO customers (User_Id, Email) VALUES (?,?);";
+psmt = connection.prepareStatement(sql4);
+psmt.setInt(1, userID);
+psmt.setString(2, email);
+psmt.executeUpdate();
+
+session = request.getSession();
+session.setAttribute("sessUserID", userID);
+session.setAttribute("sessUserRole", userRole);
+
+path = "../customer/membersPage.jsp?userID=" + userID;
+response.sendRedirect(path);
 
 connection.close();
 } catch (Exception e) {

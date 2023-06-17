@@ -22,7 +22,7 @@ Description: ST0510/JAD CA1 Assignment
 =======================================
 -->
 <div class="container-fluid">
-		<%@ include file="../header.jsp"%>
+		<%@ include file="header.jsp"%>
 		<div class="row align-items-center height">
 			<div class="container-fluid d-flex flex-column">
 				<div class="p-2">

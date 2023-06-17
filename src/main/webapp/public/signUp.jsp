@@ -49,10 +49,13 @@ Description: ST0510/JAD CA1 Assignment
 				    <form action="processSignUp.jsp" method="post" id="Login-form">
 				        <div class="container card p-3 col-7" style="background-color: rgb(218, 215, 205);">
 				            <div class="form-group p-1">
-				                <input type="text" class="form-control" name="username" placeholder="Email/Username" required="required">
+				                <input type="text" class="form-control" name="username" placeholder="Username" required="required">
 				            </div>
 				            <div class="form-group p-1">
 				                <input type="password" class="form-control" name="password" placeholder="Password" required="required">
+				            </div>
+				            <div class="form-group p-1">
+				                <input type="password" class="form-control" name="email" placeholder="Email" required="required">
 				            </div>
 				        </div>
 				        <div class="form-group mt-1 d-grid  col-7" id="enter" style="margin-left: auto;margin-right: auto;">

@@ -29,7 +29,7 @@ Description: ST0510/JAD CA1 Assignment
 =======================================
 -->
 <div class="container-fluid">
-	<% if (session.getAttribute("sessUserID") != null && (int)session.getAttribute("sessUserID") != 2){ %>
+	<% if (session.getAttribute("sessUserID") != null && session.getAttribute("sessUserID").equals("2")){ %>
 		<div class="sticky-top row">
 			<nav class="navbar" style="background-color: rgb(52, 78, 65);">
 					<div class="container-fluid d-flex">
@@ -39,7 +39,7 @@ Description: ST0510/JAD CA1 Assignment
 						<div class="p-2" style="margin:10px;">
 							<button class="btn btn-success  text-nowrap"
 							style="font-family: Monaco, monospace; font-weight: bold;"
-							onclick="window.location.href='Index.jsp'">Home</button>
+							onclick="window.location.href='../public/Index.jsp'">Home</button>
 						</div>
 					</div>
 				</nav>
@@ -55,7 +55,7 @@ Description: ST0510/JAD CA1 Assignment
 						<div class="p-2" style="margin:10px;">
 							<button class="btn btn-success  text-nowrap"
 							style="font-family: Monaco, monospace; font-weight: bold;"
-							onclick="window.location.href='logOut.jsp'">Logout</button>
+							onclick="window.location.href='../public/logOut.jsp'">Logout</button>
 						</div>
 					</div>
 				</nav>
@@ -65,7 +65,7 @@ Description: ST0510/JAD CA1 Assignment
 				<div class="row">
 					<button class="btn btn-success text-nowrap"
 					style="font-family: Monaco, monospace; font-weight: bold;"
-					onclick="window.location.href='addBookForm.jsp'">Add New Book</button>
+					onclick="window.location.href='uploadImageForm.jsp'">Add New Book</button>
 				</div>
 				<div class="row">
 					<table>
@@ -76,9 +76,9 @@ Description: ST0510/JAD CA1 Assignment
 							ResultSet rs = null;
 							String sql = null;
 							
-							sql = "SELECT * FROM books;";
+							sql = "SELECT * FROM books";
 							pstmt = connection.prepareStatement(sql);
-							pstmt.executeQuery(); 
+							rs = pstmt.executeQuery(); 
 							while(rs.next()){
 								String isbn = rs.getString("ISBN");
 								String Title = rs.getString("Title");
@@ -88,14 +88,13 @@ Description: ST0510/JAD CA1 Assignment
 								String Publisher = rs.getString("Publisher");
 								Date date = rs.getDate("Publication_Date");
 								int genreID = rs.getInt("Genre_Id");
-								double Rating = rs.getDouble("Rating");
+								String Rating = rs.getString("Rating");
 								String Description = rs.getString("Description");
-								String imgRef = rs.getString("Image_Ref");
 							%>
 								<tr>
 								 	<td><%=isbn %></td>
 								 	<td><%=Title %></td>
-								 	<td><%=Author%></td>
+								 	<td><%=Author %></td>
 								 	<td><%=Price %></td>
 								 	<td><%=Quantity %></td>
 								 	<td><%=Publisher %></td>
@@ -103,15 +102,20 @@ Description: ST0510/JAD CA1 Assignment
 								 	<td><%=genreID %></td>
 								 	<td><%=Rating %></td>
 								 	<td><%=Description %></td>
-								 	<td><%=imgRef %></td>
 								 	<td><a href="editBook.jsp?isbn=<%= isbn %>">Edit</a></td>
 								 	<td><a href="${pageContext.request.contextPath}/ManageBooksServlet?command=delete&isbn=<%= isbn %>">Delete</a></td>
+								 </tr>
 							<% } 
 							connection.close();
 						} catch (Exception e) {
 							e.printStackTrace();
 						} %>
 						</table>
+				</div>
+				<div class="row">
+					<button class="btn btn-success text-nowrap"
+					style="font-family: Monaco, monospace; font-weight: bold;"
+					onclick="window.location.href='addCustomerForm.jsp'">Add New Customer</button>
 				</div>
 				<div class="row">
 					<table>
@@ -122,11 +126,12 @@ Description: ST0510/JAD CA1 Assignment
 							ResultSet rs = null;
 							String sql = null;
 							
-							sql = "SELECT c.Customer_Id, c.Email, c.First_Name, c.Last_Name, c.Address, u.Username, u.Password FROM jad.customers c, jad.users u WHERE c.User_Id = u.User_Id;";
+							sql = "SELECT c.Customer_Id, c.Email, c.First_Name, c.Last_Name, c.Address, u.Username, u.Password, u.User_Id FROM jad.customers c, jad.users u WHERE c.User_Id = u.User_Id";
 							pstmt = connection.prepareStatement(sql);
-							pstmt.executeQuery(); 
+							rs = pstmt.executeQuery(); 
 							while(rs.next()){
 								int customerID = rs.getInt("Customer_Id");
+								int userID = rs.getInt("User_Id");
 								String Email = rs.getString("Email");
 								String First_Name = rs.getString("First_Name");
 								String Last_Name = rs.getString("Last_Name");
@@ -142,8 +147,9 @@ Description: ST0510/JAD CA1 Assignment
 								 	<td><%=Address %></td>
 								 	<td><%=Username %></td>
 								 	<td><%=Password %></td>
-								 	<td><a href="editBook.jsp?isbn=<%=customerID %>">Edit</a></td>
-								 	<td><a href="${pageContext.request.contextPath}/ManageUsersServlet?command=delete&isbn=<%=customerID  %>">Delete</a></td>
+								 	<td><a href="editBook.jsp?userID=<%=userID %>&custID=<%=customerID %>">Edit</a></td>
+								 	<td><a href="${pageContext.request.contextPath}/ManageUsersServlet?command=delete&custID=<%=customerID %>">Delete</a></td>
+								 </tr>
 							<% } 
 							connection.close();
 						} catch (Exception e) {
@@ -152,10 +158,8 @@ Description: ST0510/JAD CA1 Assignment
 						</table>
 				</div>
 			</div>
-			<div class="row">
-				<%@include file="../footer.html" %>
-			</div>
 		</div>
+		<%@include file="../footer.html" %>
 	<%} %>
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>

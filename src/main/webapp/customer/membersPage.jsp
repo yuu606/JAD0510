@@ -24,12 +24,7 @@
 <%@page import="java.sql.*"%>
 
 <%
-int UserId;
-
-session.setMaxInactiveInterval(15 * 60);
-
-session.setAttribute("sessUserID", 1);
-UserId = (int) session.getAttribute("sessUserID");
+int UserId = Integer.parseInt(request.getParameter("userID"));
 
 String Email = "";
 String First_Name = "";
@@ -70,7 +65,7 @@ try {
 %>
 
 <body>
-	<%@ include file="../header.jsp"%>
+	<%@ include file="header.jsp"%>
 	<div class="row row-cols-2 p-5 container-fluid">
 		<div class="col ">
 			<form name="memberprofile">
@@ -111,14 +106,14 @@ try {
 
 		<div class="col">
 			<button class="btn btn-secondary text-nowrap col-12 mb-3" style="margin-top: 23%" 
-			onclick="window.location.href='membersPageEdit.jsp'">Edit</button>
+			onclick="window.location.href='membersPageEdit.jsp?userID=<%=UserId %>'">Edit</button>
 			<button class="btn btn-secondary  text-nowrap col-12" onclick="del()">Delete</button>
 
 			<script>
 				function del() {
 					if (window
 							.confirm("Are you sure you want to delete your account?")) {
-						window.location.href = "EditorDeleteMember.jsp?submit=Delete";
+						window.location.href = "editorDeleteMember.jsp?submit=Delete";
 					}
 				}
 			</script>

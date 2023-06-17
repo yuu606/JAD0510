@@ -4,9 +4,16 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Edit Book</title>
+<title>Add Book</title>
 </head>
 <body>
+<!-- 
+=======================================	
+Author: Chong Yu Lin
+Date:  2023
+Description: ST0510/JAD CA1 Assignment
+=======================================
+-->
 <form name="Edit" action="${pageContext.request.contextPath}/ManageBooksServlet?command=add" method="post">
 <table class="center">
 	<tr>

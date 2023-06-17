@@ -58,26 +58,25 @@ public class VerifyUserServlet extends HttpServlet {
 
 		while(resultSet.next()){
 			
-			if (username.equals(resultSet.getString("username"))&&password.equals(resultSet.getString("password"))){
+			if (username.equals(resultSet.getString("Username"))&&password.equals(resultSet.getString("Password"))){
 				
 				int userRole = resultSet.getInt("Role_Id");
+				int userID = resultSet.getInt("User_Id");
 				HttpSession session = request.getSession();
-				session.setAttribute("sessUserID", username);
+				session.setAttribute("sessUserID", userID);
 				session.setAttribute("sessUserRole", userRole);
 				
 				if (userRole == 1) {
-					String path = "CA1/customer/membersPage.jsp";
-					RequestDispatcher dispatcher = request.getRequestDispatcher(path);
-					dispatcher.forward(request, response);
+					String path = "customer/membersPage.jsp";
+					response.sendRedirect(path);
 				} else {
-					String path = "CA1/admin/adminMain.jsp";
-					RequestDispatcher dispatcher = request.getRequestDispatcher(path);
-					dispatcher.forward(request, response);
+					String path = "admin/adminMain.jsp";
+					response.sendRedirect(path);
 				}
 			}
 		}
 		
-		String path = "CA1/public/Login.jsp?errCode=invalidLogin";
+		String path = "public/Login.jsp?errCode=invalidLogin";
 		RequestDispatcher dispatcher = request.getRequestDispatcher(path);
 		dispatcher.forward(request, response);
 		connection.close();

@@ -12,7 +12,17 @@
 <title>Edit Book</title>
 </head>
 <body>
-<% String isbn1 = request.getParameter("isbn"); %>
+<% 
+String ISBN;
+String Title;
+String Author;
+String Publisher;
+String Description;
+String Rating;
+double Price;
+int Quantity, genreID;
+Date date;
+String isbn1 = request.getParameter("isbn"); %>
 <form name="Edit" action="${pageContext.request.contextPath}/ManageBooksServlet?command=update&ISBN1=<%=isbn1 %>" method="post">
 <table class="center">
 	<%
@@ -22,19 +32,17 @@
 		PreparedStatement psmt = connection.prepareStatement(sql);
 		psmt.setString(1, isbn1);
 		ResultSet rs = psmt.executeQuery(sql);
-		while(rs.next()){
-			String ISBN = rs.getString("ISBN");
-			String Title = rs.getString("Title");
-			String Author = rs.getString("Author");
-			double Price = rs.getDouble("Price");
-			int Quantity = rs.getInt("Quantity");
-			String Publisher = rs.getString("Publisher");
-			Date date = rs.getDate("Publication_Date");
-			int genreID = rs.getInt("Genre_Id");
-			double Rating = rs.getDouble("Rating");
-			String Description = rs.getString("Description");
-			String imgRef = rs.getString("Image_Ref");
-	%>
+		rs.next();
+		ISBN = rs.getString("ISBN");
+		Title = rs.getString("Title");
+		Author = rs.getString("Author");
+		Price = rs.getDouble("Price");
+		Quantity = rs.getInt("Quantity");
+		Publisher = rs.getString("Publisher");
+		date = rs.getDate("Publication_Date");
+		genreID = rs.getInt("Genre_Id");
+		Rating = rs.getString("Rating");
+		Description = rs.getString("Description"); %>
 	<tr>
 		<td>ISBN:</td>
 		<td><input type="text" name="ISBN2" value="<%=ISBN %>"></td>
@@ -76,19 +84,20 @@
 		<td><input type="number" name="Description" value="<%=Description %>"></td>
 	</tr>
 	<tr>
-		<td>Image Reference:</td>
-		<td><input type="number" name="imageRef" value="<%=imgRef %>"></td>
-	</tr>
-	<tr>
 		<td><input type="submit" name="btnSubmit" value="Submit"></td>
 	</tr>
-	<% } 
-	connection.close();
-} catch (Exception e) {
-	e.printStackTrace();
-} %>
+	<% connection.close();
+	} catch (Exception e) {
+		e.printStackTrace();
+	}
+	%>
 </table>
 </form>
 
 </body>
 </html>
+<style>
+table, th, td {
+  border: 1px solid;
+}
+</style>

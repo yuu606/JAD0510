@@ -1,6 +1,7 @@
 package Servlets;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -8,6 +9,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
+
+/*
+=======================================	
+Author: Chong Yu Lin
+Date:  2023
+Description: ST0510/JAD CA1 Assignment
+=======================================
+*/
 
 /**
  * Servlet implementation class UploadImageServlet
@@ -44,11 +53,15 @@ public class UploadImageServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 		
-		Part filePart = request.getPart("file");
-	    String fileName = filePart.getSubmittedFileName();
-	    for (Part part : request.getParts()) {
-	      part.write("C:\\upload\\" + fileName);
-	    }
+		try {
+			Part filePart = request.getPart("file");
+		    String fileName = filePart.getSubmittedFileName();
+		    for (Part part : request.getParts()) {
+		      part.write("C:\\Users\\chong\\eclipse-workspace\\JAD_Assignment1\\src\\main\\webapp\\Images\\" + fileName);
+		    }
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
 	}
 
 }

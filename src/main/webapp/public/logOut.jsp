@@ -10,7 +10,7 @@
 <%session.invalidate();%>
 <div class="container-fluid">
 	<div class="sticky-top">
-		<%@include file="../header.jsp"%>
+		<%@include file="header.jsp"%>
 	</div>
 	<div class="row">
 		<h1>You have been logged out</h1>

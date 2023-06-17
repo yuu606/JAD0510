@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Result - Book</title>
 </head>
 <body>
 <% 
@@ -57,7 +57,7 @@ if (request.getParameter("deletedBook") != null){
 					<td><%=genreID %></td>
 					<td><%=Rating %></td>
 					<td><%=Description %></td>
-					<td><%=imgRef %></td>
+					<td><img src="../Images/<%=imgRef %>"/></td>
 				</tr>
 			</table>
 	<%	} 

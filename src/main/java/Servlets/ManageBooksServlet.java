@@ -49,8 +49,9 @@ public class ManageBooksServlet extends HttpServlet {
 		String path = "";
 		PreparedStatement pstmt;
 		
-		connection = DBConnect.getConnectionToDatabase();
 		try{
+			connection = DBConnect.getConnectionToDatabase();
+			
 			switch(command) {
 			case "delete":
 				String isbn = request.getParameter("ISBN");
@@ -58,7 +59,7 @@ public class ManageBooksServlet extends HttpServlet {
 				pstmt = connection.prepareStatement(sql);
 				pstmt.setString(1, isbn);
 				pstmt.executeUpdate();
-				path = "result.jsp?=deletedBook=" + isbn;
+				path = "resultBooks.jsp?deletedBook=" + isbn;
 				break;
 			case "update":
 				String isbn1 = request.getParameter("ISBN1");
@@ -94,7 +95,7 @@ public class ManageBooksServlet extends HttpServlet {
 				pstmt.setString(12, isbn1);
 				
 				pstmt.executeUpdate();
-				path = "result.jsp?=updatedOrder=" + isbn2;
+				path = "resultBooks.jsp?updatedOrder=" + isbn2;
 				break;
 			case "add":
 				isbn = request.getParameter("ISBN");
@@ -127,7 +128,7 @@ public class ManageBooksServlet extends HttpServlet {
 				pstmt.setString(11, imgRef);
 				
 				pstmt.executeUpdate();
-				path = "result.jsp?=newBook=" + isbn;
+				path = "resultBooks.jsp?newBook=" + isbn;
 				break;
 			}
 		

@@ -5,24 +5,32 @@
 <%@page import="java.sql.Statement"%>
 <%@page import="java.sql.Connection"%>
 <%@page import="Servlets.*"%>
-<%
-String id = request.getParameter("userid");
-String driver = "com.mysql.jdbc.Driver";
-String connectionUrl = "jdbc:mysql://localhost:3306/";
-String database = "db1";
-String userid = "root";
-String password = "urM@ther69420";
-try {
-Class.forName(driver);
-} catch (ClassNotFoundException e) {
-e.printStackTrace();
-}
+<% 
 Connection connection = null;
 Statement statement = null;
 ResultSet resultSet = null;
-%>
+String results = "";
+try{
+	connection = DBConnect.getConnectionToDatabase();
+	statement = connection.createStatement();
+	String sql = "SELECT * FROM books";
+	resultSet = statement.executeQuery(sql);
+	
+	while(resultSet.next()){ 
+		String Title = resultSet.getString("Title");
+		String ISBN = resultSet.getString("ISBN");
+		String Author = resultSet.getString("Author");
+		
+		results += " <div class='card mb-3' onclick=\"window.location.href='bookDetails.jsp?ISBN=" + ISBN
+				+ "'\" style='max-width: 600px;'><div class='row g-0'><div class='col-md-3'><img src='../Images/" + ISBN
+				+ ".jpg'style='width: auto;height:150px;' class='img-fluid rounded-start'></div><div class='col-md-9'><div class='card-body'><h5 class='card-title'>"
+				+ Title + "</h5><p class='card-text'>By: " + Author + "<p></div></div></div></div>";
+	}
+} catch (Exception e){
+	e.printStackTrace();
+} %>
 <!DOCTYPE html>
-<html>
+<html class="h-100">
 <head>
 <meta charset="UTF-8">
 	<title>Bookly</title>
@@ -42,35 +50,18 @@ Date:  2023
 Description: ST0510/JAD CA1 Assignment
 =======================================
 -->
-<div class="container-fluid">
-		<%@ include file="../header.jsp"%>
-		<div class="row align-items-center height">
+<div class="d-flex flex-column h-100">
+		<%@ include file="header.jsp"%>
+		<main class="flex-shrink-0">
 			<div class="container-fluid d-flex flex-column">
-				<div class="p-2">
-					<ul class="list-group">
-					<% 
-						connection = DBConnect.getConnectionToDatabase();
-						statement = connection.createStatement();
-						String sql = "SELECT * FROM books";
-						resultSet = statement.executeQuery(sql);
-						
-						while(resultSet.next()){ 
-							String title = resultSet.getString("Title");
-							String imgRef = resultSet.getString("Image_Ref");
-							String ISBN = resultSet.getString("ISBN");%>
-								<li class="list-group-item">
-									<img src="<%= imgRef %>"/>
-									<h3><%= ISBN %></h3>
-									<a href="bookDetails.jsp?=<%= title %>"><%= title %></a>
-								</li>
-					<% } %>
-					</ul>
-				</div>
+				<article class="container-fluid p-2">
+					<div class=" row justify-content-around g-0" id="Results">
+						<%=results%>
+					</div>
+				</article>
 			</div>
-			<div class="row">
-				<%@include file="../footer.html" %>
-			</div>
-		</div>
+		</main>
+		<%@include file="../footer.html" %>
 </div>
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
