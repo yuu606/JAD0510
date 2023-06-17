@@ -8,26 +8,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<script src="https://code.jquery.com/jquery-3.3.1.min.js"
-	integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-	crossorigin="anonymous"></script>
-<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-<link
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+		<link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
 	rel="stylesheet"
 	integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
 	crossorigin="anonymous">
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
-	integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
-	crossorigin="anonymous"></script>
 <title>Edit Book</title>
 </head>
 <body>
+<div class="container-fluid">
 	<%
-	if (session.getAttribute("sessUserID") != null && session.getAttribute("sessUserID").equals("2")) {
-	%>
+	if (session.getAttribute("sessUserID") == null || !session.getAttribute("sessUserRole").equals(2)){ %>
 	<div class="sticky-top row">
 		<nav class="navbar" style="background-color: rgb(52, 78, 65);">
 			<div class="container-fluid d-flex">
@@ -119,12 +112,12 @@
 				</tr>
 				<tr>
 					<td>Price:</td>
-					<td><input class="form-control" type="number" name="Price"
+					<td><input class="form-control" type="number" step="0.01" min="0" name="Price"
 						value="<%=Price%>"></td>
 				</tr>
 				<tr>
 					<td>Quantity:</td>
-					<td><input class="form-control" type="number" name="Quantity"
+					<td><input class="form-control" type="number"  min="0" name="Quantity"
 						value="<%=Quantity%>"></td>
 				</tr>
 				<tr>
@@ -139,12 +132,12 @@
 				</tr>
 				<tr>
 					<td>Genre ID:</td>
-					<td><input class="form-control" type="number" name="genreID"
+					<td><input class="form-control" type="number" name="genreID"  min="1" max="3"
 						value="<%=genreID%>"></td>
 				</tr>
 				<tr>
 					<td>Rating:</td>
-					<td><input class="form-control" type="number" name="Rating"
+					<td><input class="form-control" type="number" name="Rating"  min="0" max="5" step="0.1"
 						value="<%=Rating%>"></td>
 				</tr>
 				<tr>
@@ -166,6 +159,7 @@
 			</table>
 		</div>
 	</form>
-
+	</div>
+	<%@include file="../footer.html" %>
 </body>
 </html>

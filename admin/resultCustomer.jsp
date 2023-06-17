@@ -5,26 +5,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<script src="https://code.jquery.com/jquery-3.3.1.min.js"
-	integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-	crossorigin="anonymous"></script>
-<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-<link
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+		<link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
 	rel="stylesheet"
 	integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
 	crossorigin="anonymous">
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
-	integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
-	crossorigin="anonymous"></script>
 <title>Result - Customer</title>
 </head>
 <body>
+<div class="container-fluid">
 	<%
-	if (session.getAttribute("sessUserID") != null && session.getAttribute("sessUserID").equals("2")) {
-	%>
+	if (session.getAttribute("sessUserID") == null || !session.getAttribute("sessUserRole").equals(2)){	%>
 	<div class="sticky-top row">
 		<nav class="navbar" style="background-color: rgb(52, 78, 65);">
 			<div class="container-fluid d-flex">
@@ -114,6 +107,7 @@
 	}
 	}
 	%>
-
+</div>
+<%@include file="../footer.html" %>
 </body>
 </html>
