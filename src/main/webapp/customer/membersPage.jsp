@@ -24,7 +24,7 @@
 <%@page import="java.sql.*"%>
 
 <%
-int UserId = Integer.parseInt(request.getParameter("userID"));
+int UserId = (int)session.getAttribute("sessUserID");
 
 String Email = "";
 String First_Name = "";

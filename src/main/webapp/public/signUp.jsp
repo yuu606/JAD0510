@@ -55,7 +55,16 @@ Description: ST0510/JAD CA1 Assignment
 				                <input type="password" class="form-control" name="password" placeholder="Password" required="required">
 				            </div>
 				            <div class="form-group p-1">
-				                <input type="password" class="form-control" name="email" placeholder="Email" required="required">
+				                <input type="email" class="form-control" name="email" placeholder="Email" required="required">
+				            </div>
+				            <div class="form-group p-1">
+				                <input type="text" class="form-control" name="address" placeholder="Address" required="required">
+				            </div>
+				            <div class="form-group p-1">
+				                <input type="text" class="form-control" name="firstName" placeholder="First Name" required="required">
+				            </div>
+				            <div class="form-group p-1">
+				                <input type="text" class="form-control" name="lastName" placeholder="Last Name" required="required">
 				            </div>
 				        </div>
 				        <div class="form-group mt-1 d-grid  col-7" id="enter" style="margin-left: auto;margin-right: auto;">

@@ -24,7 +24,7 @@ int custID1 = Integer.parseInt(request.getParameter("custID"));
 		String sql ="SELECT c.Email, c.First_Name, c.Last_Name, c.Address, u.Username, u.Password FROM jad.customers c, jad.users u WHERE c.User_Id = u.User_Id and c.User_Id = ?";
 		PreparedStatement psmt = connection.prepareStatement(sql);
 		psmt.setInt(1, userID1);
-		ResultSet rs = psmt.executeQuery(sql);
+		ResultSet rs = psmt.executeQuery();
 		while(rs.next()){ 
 			String Email = rs.getString("Email");
 			String Address = rs.getString("Address");

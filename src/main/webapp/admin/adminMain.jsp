@@ -103,7 +103,7 @@ Description: ST0510/JAD CA1 Assignment
 								 	<td><%=Rating %></td>
 								 	<td><%=Description %></td>
 								 	<td><a href="editBook.jsp?isbn=<%= isbn %>">Edit</a></td>
-								 	<td><a href="${pageContext.request.contextPath}/ManageBooksServlet?command=delete&isbn=<%= isbn %>">Delete</a></td>
+								 	<td><a href="manageBooks.jsp?command=delete&isbn=<%= isbn %>">Delete</a></td>
 								 </tr>
 							<% } 
 							connection.close();

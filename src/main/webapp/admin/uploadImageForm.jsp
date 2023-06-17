@@ -46,11 +46,11 @@ Description: ST0510/JAD CA1 Assignment
 					</div>
 				</nav>
 			</div>
-		<%} %>
 	<form method="post" action="${pageContext.request.contextPath}/UploadImageServlet" enctype="multipart/form-data">
 	    <input type="file" name="file" />
 	    <input type="submit" value="Upload" />
 	</form>
 	</div>
+	<%} %>
 </body>
 </html>

@@ -23,7 +23,7 @@ double Price;
 int Quantity, genreID;
 Date date;
 String isbn1 = request.getParameter("isbn"); %>
-<form name="Edit" action="${pageContext.request.contextPath}/ManageBooksServlet?command=update&ISBN1=<%=isbn1 %>" method="post">
+<form name="Edit" action="manageBooks.jsp?command=update&ISBN1=<%=isbn1 %>" method="post">
 <table class="center">
 	<%
 	try{
@@ -31,7 +31,7 @@ String isbn1 = request.getParameter("isbn"); %>
 		String sql ="SELECT * FROM books WHERE ISBN = ?";
 		PreparedStatement psmt = connection.prepareStatement(sql);
 		psmt.setString(1, isbn1);
-		ResultSet rs = psmt.executeQuery(sql);
+		ResultSet rs = psmt.executeQuery();
 		rs.next();
 		ISBN = rs.getString("ISBN");
 		Title = rs.getString("Title");
@@ -81,7 +81,7 @@ String isbn1 = request.getParameter("isbn"); %>
 	</tr>
 	<tr>
 		<td>Description:</td>
-		<td><input type="number" name="Description" value="<%=Description %>"></td>
+		<td><input type="text" name="Description" value="<%=Description %>"></td>
 	</tr>
 	<tr>
 		<td><input type="submit" name="btnSubmit" value="Submit"></td>

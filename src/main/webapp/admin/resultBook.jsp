@@ -15,9 +15,8 @@ PreparedStatement psmt = null;
 String ISBN = null;
 String header = null;
 
-if (request.getParameter("deletedBook") != null){
-	String deletedISBN = request.getParameter("deletedBook");
-	out.print("You have deleted book" + deletedISBN );
+if (request.getParameter("deletedBook").equals("true")){
+	out.print("You have successfully deleted book" );
 } else {
 	if (request.getParameter("updatedBook") != null){
 		ISBN = request.getParameter("updatedBook");
@@ -31,7 +30,7 @@ if (request.getParameter("deletedBook") != null){
 	String sql ="SELECT * FROM books WHERE ISBN = ?";
 	psmt = connection.prepareStatement(sql);
 	psmt.setString(1, ISBN);
-	ResultSet rs = psmt.executeQuery(sql);
+	ResultSet rs = psmt.executeQuery();
 	while(rs.next()){ 
 		String isbn = rs.getString("ISBN");
 		String Title = rs.getString("Title");
@@ -42,8 +41,7 @@ if (request.getParameter("deletedBook") != null){
 		Date date = rs.getDate("Publication_Date");
 		int genreID = rs.getInt("Genre_Id");
 		double Rating = rs.getDouble("Rating");
-		String Description = rs.getString("Description");
-		String imgRef = rs.getString("Image_Ref"); %>
+		String Description = rs.getString("Description"); %>
 		<h1><%=header %></h1>
 			<table>
 				<tr>
@@ -57,7 +55,6 @@ if (request.getParameter("deletedBook") != null){
 					<td><%=genreID %></td>
 					<td><%=Rating %></td>
 					<td><%=Description %></td>
-					<td><img src="../Images/<%=imgRef %>"/></td>
 				</tr>
 			</table>
 	<%	} 

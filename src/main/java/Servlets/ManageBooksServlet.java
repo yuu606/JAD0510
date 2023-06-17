@@ -1,6 +1,7 @@
 package Servlets;
 
 import java.io.IOException;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 
@@ -10,8 +11,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.Date;
 import java.text.SimpleDateFormat;
+import java.sql.Date;
 
 /**
  * Servlet implementation class ManageBooksServlet
@@ -60,6 +61,7 @@ public class ManageBooksServlet extends HttpServlet {
 				pstmt.setString(1, isbn);
 				pstmt.executeUpdate();
 				path = "resultBooks.jsp?deletedBook=" + isbn;
+				response.sendRedirect(path);
 				break;
 			case "update":
 				String isbn1 = request.getParameter("ISBN1");
@@ -75,9 +77,7 @@ public class ManageBooksServlet extends HttpServlet {
 				String imgRef = request.getParameter("imageRef");
 				
 				String strPubDate = request.getParameter("publicationDate");
-				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-				Date pubDate = (Date) sdf.parse(strPubDate);
-				
+				Date pubDate = Date.valueOf(strPubDate);
 				
 				sql = "UDATE books SET ISBN = ?, Title = ?, Author = ?, Price = ?, Quantity = ?, Publisher = ?, Publication_Date = ?, Genre_Id = ?, Rating = ?, Description = ?, Image_Ref = ? WHERE ISBN = ?;";
 				pstmt = connection.prepareStatement(sql);
@@ -87,7 +87,7 @@ public class ManageBooksServlet extends HttpServlet {
 				pstmt.setDouble(4, price);
 				pstmt.setInt(5, quantity);
 				pstmt.setString(6, publisher);
-				pstmt.setDate(7, (java.sql.Date) pubDate);
+				pstmt.setDate(7, pubDate);
 				pstmt.setInt(8, genreID);
 				pstmt.setDouble(9, rating);
 				pstmt.setString(10, description);
@@ -95,7 +95,8 @@ public class ManageBooksServlet extends HttpServlet {
 				pstmt.setString(12, isbn1);
 				
 				pstmt.executeUpdate();
-				path = "resultBooks.jsp?updatedOrder=" + isbn2;
+				path = "resultBooks.jsp?updatedBook=" + isbn2;
+				response.sendRedirect(path);
 				break;
 			case "add":
 				isbn = request.getParameter("ISBN");
@@ -110,8 +111,7 @@ public class ManageBooksServlet extends HttpServlet {
 				imgRef = request.getParameter("imageRef");
 				
 				strPubDate = request.getParameter("publicationDate");
-				sdf = new SimpleDateFormat("yyyy-MM-dd");
-				pubDate = (Date)sdf.parse(strPubDate);
+				pubDate = Date.valueOf(strPubDate);
 				
 				sql = "INSERT INTO books (ISBN, Title, Author, Price, Quantity, Publisher, Publication_Date, Genre_Id, Rating, Description, Image_Ref) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
 				pstmt = connection.prepareStatement(sql);
@@ -121,7 +121,7 @@ public class ManageBooksServlet extends HttpServlet {
 				pstmt.setDouble(4, price);
 				pstmt.setInt(5, quantity);
 				pstmt.setString(6, publisher);
-				pstmt.setDate(7, (java.sql.Date) pubDate);
+				pstmt.setDate(7, pubDate);
 				pstmt.setInt(8, genreID);
 				pstmt.setDouble(9, rating);
 				pstmt.setString(10, description);
@@ -129,11 +129,9 @@ public class ManageBooksServlet extends HttpServlet {
 				
 				pstmt.executeUpdate();
 				path = "resultBooks.jsp?newBook=" + isbn;
+				response.sendRedirect(path);
 				break;
 			}
-		
-		RequestDispatcher dispatcher = request.getRequestDispatcher(path);
-		dispatcher.forward(request, response);
 		connection.close();
 		} catch (Exception e) {
 		e.printStackTrace();

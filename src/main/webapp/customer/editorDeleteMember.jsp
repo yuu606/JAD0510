@@ -25,7 +25,7 @@
 		String sqlStr;
 		out.print(Editing);
 		if (Editing.equals("Delete")) {
-			sqlStr = "delete from jad.users where User_Id = ?";
+			sqlStr = "DELETE from jad.users WHERE User_Id = ?";
 			PreparedStatement pstmt = conn.prepareStatement(sqlStr);
 			pstmt.setInt(1, UserId);
 			int count = pstmt.executeUpdate();
