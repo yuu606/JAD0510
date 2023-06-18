@@ -21,7 +21,7 @@ try{
 	
 	switch(command) {
 	case "delete":
-		String isbn = request.getParameter("ISBN");
+		String isbn = request.getParameter("isbn");
 		sql = "DELETE FROM books WHERE ISBN = ?;";
 		pstmt = connection.prepareStatement(sql);
 		pstmt.setString(1, isbn);

@@ -23,9 +23,9 @@
 			PreparedStatement pstmt = conn.prepareStatement(sqlStr);
 			pstmt.setInt(1, UserId);
 			int count = pstmt.executeUpdate();
-			//out.println (count + " records deleted");
-		
-			response.sendRedirect("../Login.jsp");
+			
+			session.invalidate();
+			response.sendRedirect("../public/Login.jsp");
 		} else if (Editing.equals("confirm edit")) {
 			sqlStr = "UPDATE jad.customers c, jad.users u set c.First_Name = ?,c.Last_Name= ?,c.Email = ? ,c.Address = ?,  u.Username= ?, u.Password=? where u.User_Id = ? AND u.User_Id = c.User_Id ";
 			PreparedStatement pstmt = conn.prepareStatement(sqlStr);
@@ -41,9 +41,8 @@
 			pstmt.setString(6, request.getParameter("Password"));
 			pstmt.setInt(7, UserId);
 			int count = pstmt.executeUpdate();
-			 out.print("edt <br> "+count);
-			 
-			 session.removeAttribute("sessUserId");
+			out.print("edt <br> "+count);
+			
 			response.sendRedirect("membersPage.jsp");
 		}
 		conn.close();

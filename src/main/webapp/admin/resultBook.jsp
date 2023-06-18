@@ -48,6 +48,11 @@
 					<div class="p-2" style="margin: 10px;">
 						<button class="btn btn-success  text-nowrap"
 							style="font-family: Monaco, monospace; font-weight: bold;"
+							onclick="window.location.href='adminMain.jsp'">Admin Home</button>
+					</div>
+					<div class="p-2" style="margin: 10px;">
+						<button class="btn btn-success  text-nowrap"
+							style="font-family: Monaco, monospace; font-weight: bold;"
 							onclick="window.location.href='../public/logOut.jsp'">Logout</button>
 					</div>
 				</div>
@@ -62,7 +67,7 @@
 
 		if (request.getParameter("deletedBook") != null) {
 			String deletedISBN = request.getParameter("deletedBook");
-			out.print("You have deleted book" + deletedISBN);
+			out.print("You have deleted book");
 		} else {
 			if (request.getParameter("updatedBook") != null) {
 				ISBN = request.getParameter("updatedBook");
@@ -78,46 +83,58 @@
 				psmt.setString(1, ISBN);
 				ResultSet rs = psmt.executeQuery();
 				while (rs.next()) {
-			String isbn = rs.getString("ISBN");
-			String Title = rs.getString("Title");
-			String Author = rs.getString("Author");
-			double Price = rs.getDouble("Price");
-			int Quantity = rs.getInt("Quantity");
-			String Publisher = rs.getString("Publisher");
-			Date date = rs.getDate("Publication_Date");
-			int genreID = rs.getInt("Genre_Id");
-			double Rating = rs.getDouble("Rating");
-			String Description = rs.getString("Description");
-			String imgRef = rs.getString("Image_Ref");
-		%>
-		<h1><%=header%></h1>
-		<table class="table table-bordered m-2">
-			<tr>
-				<td><%=isbn%></td>
-				<td><%=Title%></td>
-				<td><%=Author%></td>
-				<td><%=Price%></td>
-				<td><%=Quantity%></td>
-				<td><%=Publisher%></td>
-				<td><%=date%></td>
-				<td><%=genreID%></td>
-				<td><%=Rating%></td>
-				<td><%=Description%></td>
-				<td><img src="../Images/<%=imgRef%>"
-					style="width: 100%; height: auto;"></td>
-			</tr>
-		</table>
-		<%
-		}
-		connection.close();
-		} catch (Exception e) {
-		e.printStackTrace();
-		}
-		}
-		}
-		;
-		%>
+				String isbn = rs.getString("ISBN");
+				String Title = rs.getString("Title");
+				String Author = rs.getString("Author");
+				double Price = rs.getDouble("Price");
+				int Quantity = rs.getInt("Quantity");
+				String Publisher = rs.getString("Publisher");
+				Date date = rs.getDate("Publication_Date");
+				int genreID = rs.getInt("Genre_Id");
+				double Rating = rs.getDouble("Rating");
+				String Description = rs.getString("Description");
+			%>
+			<h2><%=header%></h2>
+			<table class="table table-bordered m-2">
+				<thead>
+					<tr>
+						<th scope="col">ISBN</th>
+						<th scope="col">Title</th>
+						<th scope="col">Author</th>
+						<th scope="col">Price</th>
+						<th scope="col">Quantity</th>
+						<th scope="col">Publisher</th>
+						<th scope="col">Publication Date</th>
+						<th scope="col">Genre ID</th>
+						<th scope="col">Rating</th>
+						<th scope="col">Description</th>
+					</tr>
+				</thead>
+				<tr>
+					<td><img src="../Images/<%=isbn %>.jpg"/></td>
+					<td><%=isbn%></td>
+					<td><%=Title%></td>
+					<td><%=Author%></td>
+					<td><%=Price%></td>
+					<td><%=Quantity%></td>
+					<td><%=Publisher%></td>
+					<td><%=date%></td>
+					<td><%=genreID%></td>
+					<td><%=Rating%></td>
+					<td><%=Description%></td>
+				</tr>
+			</table>
+			<%
+			}
+			connection.close();
+			} catch (Exception e) {
+			e.printStackTrace();
+			}
+			}
+			}
+			;
+			%>
 	</div>
-	<%@include file="../footer.html" %>
 </body>
+<%@include file="../footer.html" %>
 </html>

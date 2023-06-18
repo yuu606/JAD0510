@@ -70,7 +70,7 @@
 	String isbn1 = request.getParameter("isbn");
 	%>
 	<form name="Edit"
-		action="${pageContext.request.contextPath}/ManageBooksServlet?command=update&ISBN1=<%=isbn1 %>"
+		action="manageBooks.jsp?command=update&ISBN1=<%=isbn1 %>"
 		method="post">
 		<div class="container-fluid p-3">
 			<table class="table table-bordered table-hover">

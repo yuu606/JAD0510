@@ -61,27 +61,33 @@
 			<table class="table table-bordered table-hover">
 				<tr>
 					<td>Email:</td>
-					<td><input type="email" name="Email" class="form-control"></td>
+					<td><input type="email" name="Email" class="form-control" 
+					placeholder="Email" required="required"></td>
 				</tr>
 				<tr>
 					<td>Address:</td>
-					<td><input type="text" name="Address" class="form-control"></td>
+					<td><input type="text" name="Address" class="form-control" 
+					placeholder="Address" required="required"></td>
 				</tr>
 				<tr>
 					<td>First Name:</td>
-					<td><input type="text" name="FirstName" class="form-control"></td>
+					<td><input type="text" name="FirstName" class="form-control" 
+					placeholder="First Name" required="required"></td>
 				</tr>
 				<tr>
 					<td>Last_Name:</td>
-					<td><input type="text" name="LastName" class="form-control"></td>
+					<td><input type="text" name="LastName" class="form-control" 
+					placeholder="Last Name" required="required"></td>
 				</tr>
 				<tr>
 					<td>Username:</td>
-					<td><input type="text" name="Username" class="form-control"></td>
+					<td><input type="text" name="Username" class="form-control" 
+					placeholder="Username" required="required"></td>
 				</tr>
 				<tr>
 					<td>Password:</td>
-					<td><input type="text" name="Password" class="form-control"></td>
+					<td><input type="text" name="Password" class="form-control" 
+					placeholder="Password" required="required"></td>
 				</tr>
 				<tr>
 					<td><input type="submit" name="btnSubmit" value="Submit"

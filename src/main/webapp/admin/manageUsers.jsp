@@ -31,7 +31,7 @@ try{
 		pstmt = connection.prepareStatement(sql);
 		pstmt.setInt(1, custID);
 		pstmt.executeUpdate();
-		path = "result.jsp?deletedCust=" + custID;
+		path = "resultCustomer.jsp?deletedCust=" + custID;
 		break;
 	case "update":
 		int userID1 = Integer.parseInt(request.getParameter("userID1"));
@@ -44,7 +44,7 @@ try{
 		pstmt.setInt(1, userID2);
 		pstmt.setString(2, Username);
 		pstmt.setString(3, Password);
-		pstmt.setInt(1, userID1);
+		pstmt.setInt(4, userID1);
 		
 		int custID1 = Integer.parseInt(request.getParameter("custID1"));
 		int custID2 = Integer.parseInt(request.getParameter("custID2"));
@@ -64,7 +64,7 @@ try{
 		pstmt.setInt(7, custID1);
 		
 		pstmt.executeUpdate();
-		path = "result.jsp?updatedCust=" + userID2;
+		path = "resultCustomer.jsp?updatedCust=" + userID2;
 		break;
 	case "add":
 		String username = request.getParameter("Username");
@@ -80,6 +80,7 @@ try{
 		pstmt = connection.prepareStatement(sql2);
 		pstmt.setString(1, username);
 		ResultSet rs = pstmt.executeQuery();
+		rs.next();
 		
 		int userID = rs.getInt("User_Id");
 		email = request.getParameter("Email");
@@ -87,17 +88,16 @@ try{
 		firstName = request.getParameter("FirstName");
 		lastName = request.getParameter("LastName");
 		
-		String sql3 = "INSERT INTO customers (User_Id, Email, Address, First_Name, Last_Name) VALUES (?,?,?,?,?)";
+		String sql3 = "UPDATE jad.customers SET (Email, Address, First_Name, Last_Name) VALUES (?,?,?,?,?)";
 		pstmt = connection.prepareStatement(sql3);
-		pstmt.setInt(1, userID);
-		pstmt.setString(2, email);
-		pstmt.setString(3, address);
-		pstmt.setString(4, firstName);
-		pstmt.setString(5, lastName);
+		pstmt.setString(1, email);
+		pstmt.setString(2, address);
+		pstmt.setString(3, firstName);
+		pstmt.setString(4, lastName);
 		pstmt.executeUpdate();
 		
 		pstmt.executeUpdate();
-		path = "result.jsp?newCust=" + userID;
+		path = "resultCustomer.jsp?newCust=" + userID;
 		break;
 	}
 	

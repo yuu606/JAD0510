@@ -18,6 +18,9 @@ ResultSet resultSet = null;
 String username = request.getParameter("username");
 String password = request.getParameter("password");
 String email = request.getParameter("email");
+String address = request.getParameter("address");
+String firstName = request.getParameter("firstName");
+String lastName = request.getParameter("lastName");
 String path = "";
 int userRole = 1;
 
@@ -49,10 +52,13 @@ resultSet = psmt.executeQuery();
 resultSet.next();
 int userID = resultSet.getInt("User_Id");
 
-String sql4 = "INSERT INTO customers (User_Id, Email) VALUES (?,?);";
+String sql4 = "INSERT INTO customers (User_Id, Email, Address, First_Name, Last_Name) VALUES (?,?,?,?,?);";
 psmt = connection.prepareStatement(sql4);
 psmt.setInt(1, userID);
 psmt.setString(2, email);
+psmt.setString(3, address);
+psmt.setString(4, firstName);
+psmt.setString(5, lastName);
 psmt.executeUpdate();
 
 session = request.getSession();

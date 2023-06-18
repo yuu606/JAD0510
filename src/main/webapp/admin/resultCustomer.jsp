@@ -61,7 +61,7 @@
 
 	if (request.getParameter("deletedCust") != null) {
 		String deletedCust = request.getParameter("deletedCust");
-		out.print("You have deleted book" + deletedCust);
+		out.print("You have successfully deleted customer");
 	} else {
 		int userID = 0;
 		String sql = "";
@@ -77,7 +77,7 @@
 			sql = "SELECT c.Customer_Id, c.Email, c.First_Name, c.Last_Name, c.Address, u.Username, u.Password FROM jad.customers c, jad.users u WHERE c.User_Id = u.User_Id and c.User_Id = ?";
 			psmt = connection.prepareStatement(sql);
 			psmt.setInt(1, userID);
-			ResultSet rs = psmt.executeQuery(sql);
+			ResultSet rs = psmt.executeQuery();
 			while (rs.next()) {
 		int custID = rs.getInt("Customer_Id");
 		String Email = rs.getString("Email");

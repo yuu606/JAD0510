@@ -59,6 +59,11 @@ Description: ST0510/JAD CA1 Assignment
 						<div class="p-2 flex-grow-1">
 							<h3 style="font-family: Copperplate, fantasy; color: white; padding: 5px;">Bookly - Admin</h3>
 						</div>
+						<div class="p-2" style="margin: 10px;">
+							<button class="btn btn-success  text-nowrap"
+								style="font-family: Monaco, monospace; font-weight: bold;"
+								onclick="window.location.href='adminMain.jsp'">Admin Home</button>
+						</div>
 						<div class="p-2" style="margin:10px;">
 							<button class="btn btn-success  text-nowrap"
 							style="font-family: Monaco, monospace; font-weight: bold;"
@@ -175,6 +180,7 @@ Description: ST0510/JAD CA1 Assignment
 							%>
 								<tr>
 								 	<td><%=customerID %></td>
+								 	<td><%=userID %></td>
 								 	<td><%=Email %></td>
 								 	<td><%=First_Name%></td>
 								 	<td><%=Last_Name %></td>

@@ -22,22 +22,14 @@ Description: ST0510/JAD CA1 Assignment
 <main class="flex-shrink-0">
 	<div class="container-fluid height">
 		<%@include file="header.jsp"%>
-		<%if (session.getAttribute("sessUserID") != null) { %>
 		<div class="row">
 			<h1>You have been logged out</h1>
 			<h2>Back to <a href="Index.jsp">home page</a></h2>
 		</div>
-		<%
-		session.invalidate();
-		} else { %>
-		<div class="row">
-			<h1>Your session has timed out</h1>
-			<h2>Back to <a href="Index.jsp">home page</a></h2>
-		</div>
-		<%} %>
 	</div>
 </main>
 <%@include file="../footer.html" %>
+<%session.invalidate();%>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 </html>
