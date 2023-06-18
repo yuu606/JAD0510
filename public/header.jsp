@@ -37,9 +37,9 @@ Description: ST0510/JAD CA1 Assignment
             Genres
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="genrePage.jsp?search=romance">Romance</a></li>
-            <li><a class="dropdown-item" href="genrePage.jsp?search=fantasy">Fantasy</a></li>
-            <li><a class="dropdown-item" href="genrePage.jsp?search=classic">Classic</a></li>
+            <li><a class="dropdown-item" href="../public/genrePage.jsp?search=romance">Romance</a></li>
+            <li><a class="dropdown-item" href="../public/genrePage.jsp?search=fantasy">Fantasy</a></li>
+            <li><a class="dropdown-item" href="../public/genrePage.jsp?search=classic">Classic</a></li>
           </ul>
         </li>
       </ul>

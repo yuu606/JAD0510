@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html class="h-100">
 <head>
 <meta charset="UTF-8">
 <title>Login</title>
@@ -18,11 +18,11 @@
 	crossorigin="anonymous">
 </head>
 
-<body >
+<body class="d-flex flex-column h-100">
+<main class="flex-shrink-0">
 	<div class="container-fluid" style="min-height:87vh;">
-
 		<%@include file="header.jsp"%>
-		<div class="row align-items-center">
+		<div class="row align-items-center height">
 			<%
 			if (session.getAttribute("sessUserID") != null) {
 			%>
@@ -70,8 +70,15 @@
 			}
 			%>
 		</div>
-
-	</div>		
-	<%@include file="../footer.html"%>
+	</div>
+</main>		
+<%@include file="../footer.html"%>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 </html>
+
+<style>
+.height{
+	min-height: 595px;
+}
+</style>

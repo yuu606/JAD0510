@@ -3,7 +3,7 @@
 <%@page import="java.sql.*"%>
 <%@page import="Servlets.*"%>
 <!DOCTYPE html>
-<html>
+<html class="h-100">
 <head>
 
 <meta charset="UTF-8">
@@ -13,8 +13,11 @@
 	rel="stylesheet"
 	integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
 	crossorigin="anonymous">
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
-	
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+	integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+	crossorigin="anonymous"></script>
+
 <title>Your Info</title>
 
 </head>
@@ -51,15 +54,14 @@ try {
 	Password = rs.getString("Password");
 %>
 
-<body>
-
-	<div class="container-fluid">
-		<%@ include file="header.jsp"%>
-		<div class="m-5">
+<body class="d-flex flex-column h-100">
+	<main class="flex-shrink-0">
+		<div class="container-fluid">
+			<%@ include file="header.jsp"%>
 			<form action="editorDeleteMember.jsp" name="send" method="post"
-				class="row row-cols-2">
-				<div class="col">
-					<div class="input-group mb-3 ">
+				class="d-flex align-items-center mb-2 justify-content-center height">
+				<div class="p-2 w-100">
+					<div class="input-group mb-3">
 						<span class="input-group-text">First Name:</span> <input
 							type="text" class="form-control" name="first_name"
 							value='<%=First_Name%>'>
@@ -69,7 +71,6 @@ try {
 							type="text" class="form-control" name="last_name"
 							value='<%=Last_Name%>'>
 					</div>
-
 					<div>
 						<br>
 					</div>
@@ -93,24 +94,29 @@ try {
 							class="form-control" name="Password" value='<%=Password%>'>
 					</div>
 				</div>
-				<div class="col">
+				<div class="p-2 w-100">
 					<input class="btn btn-secondary col-12 text-nowrap mb-3 "
-						style="margin-top: 23%" type="submit" name="submit"
-						value="confirm edit">
+						type="submit" name="submit" value="confirm edit">
 
 					<button class="btn btn-secondary  text-nowrap col-12 "
 						type='button' onclick="window.location.href='membersPage.jsp'">Back</button>
 				</div>
 			</form>
 		</div>
-	</div>
+	</main>
+	<%@include file="../footer.html"%>
 </body>
 <%
 // Step 7: Close connection
 conn.close();
 } catch (Exception e) {
-out.println("Error :" + e);
+System.out.println("Error :" + e);
 }
 %>
-<%@include file="../footer.html"%>
 </html>
+
+<style>
+.height {
+	min-height: 590px;
+}
+</style>
