@@ -9,7 +9,6 @@
 <title>Processing</title>
 </head>
 <body>
-	<%@ page import="java.sql.*"%>
 
 	<%
 	int UserId = (int) session.getAttribute("sessUserID");
@@ -25,8 +24,8 @@
 			pstmt.setInt(1, UserId);
 			int count = pstmt.executeUpdate();
 			//out.println (count + " records deleted");
-		
-			response.sendRedirect("../Login.jsp");
+			session.invalidate();
+			response.sendRedirect("../public/Login.jsp");
 		} else if (Editing.equals("confirm edit")) {
 			sqlStr = "UPDATE jad.customers c, jad.users u set c.First_Name = ?,c.Last_Name= ?,c.Email = ? ,c.Address = ?,  u.Username= ?, u.Password=? where u.User_Id = ? AND u.User_Id = c.User_Id ";
 			PreparedStatement pstmt = conn.prepareStatement(sqlStr);
@@ -44,7 +43,6 @@
 			int count = pstmt.executeUpdate();
 			 out.print("edt <br> "+count);
 			 
-			 session.removeAttribute("sessUserId");
 			response.sendRedirect("membersPage.jsp");
 		}
 		conn.close();

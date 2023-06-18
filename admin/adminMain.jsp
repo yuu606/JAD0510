@@ -125,7 +125,7 @@ Description: ST0510/JAD CA1 Assignment
 								 	<td><%=Rating %></td>
 								 	<td><%=Description %></td>
 								 	<td><a role="button" href="editBook.jsp?isbn=<%= isbn %>">Edit</a></td>
-								 	<td><a role="button" href="manageBooks.jsp?command=delete&isbn=<%= isbn %>">Delete</a></td>
+								 	<td><a role="button" href="manageBooks.jsp?command=delete&ISBN=<%= isbn %>">Delete</a></td>
 								 </tr>
 							<% } 
 							connection.close();

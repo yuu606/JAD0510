@@ -25,7 +25,8 @@ try{
 		sql = "DELETE FROM books WHERE ISBN = ?;";
 		pstmt = connection.prepareStatement(sql);
 		pstmt.setString(1, isbn);
-		pstmt.executeUpdate();
+		int count = pstmt.executeUpdate();
+		System.out.println(count);
 		path = "resultBook.jsp?deletedBook=true";
 		response.sendRedirect(path);
 		break;

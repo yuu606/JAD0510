@@ -20,7 +20,6 @@
 	crossorigin="anonymous"></script>
 <title>Transaction</title>
 </head>
-<body>
 <%@page import="java.sql.*"%>
 <% 
 String Title;
@@ -60,14 +59,15 @@ try {
 	out.println("Error :" + e);
 }
 %>
+
+<body>
 	<%@ include file="header.jsp"%>
+	<%if (session.getAttribute("sessUserID") != null) { %>
     <article class="container-fluid my-2 px-5">
         <h3 style="color: rgb(128, 0, 0);">Order Summary</h3>
-<%=results %>
-
+		<%=results %>
     </article>
 
-</body>
 <div class="sticky-bottom">
     <div class="px-3 pt-2 text-success-emphasis bg-success-subtle border border-success-subtle ">
         <div class="row">
@@ -84,8 +84,13 @@ try {
             </div>
         </div>
     </div>
-
+    <%} else { %>
+	<div class="row">
+		<h2>You are not logged in as a customer</h2>
+	</div>
+	<% } %>
 </div>
 </body>
-    <%@ include file="../footer.html"%>
+<%@ include file="../footer.html"%>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 </html>
