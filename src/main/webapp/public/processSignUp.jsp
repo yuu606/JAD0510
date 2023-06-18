@@ -1,11 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@page import="java.sql.*" %>
 <%@page import="Servlets.*"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
+<meta charset="UTF-8">
+
 <title>Insert title here</title>
 </head>
 <body>
@@ -17,9 +18,6 @@ ResultSet resultSet = null;
 String username = request.getParameter("username");
 String password = request.getParameter("password");
 String email = request.getParameter("email");
-String address = request.getParameter("address");
-String firstName = request.getParameter("firstName");
-String lastName = request.getParameter("lastName");
 String path = "";
 int userRole = 1;
 
@@ -51,22 +49,17 @@ resultSet = psmt.executeQuery();
 resultSet.next();
 int userID = resultSet.getInt("User_Id");
 
-String sql4 = "INSERT INTO customers (User_Id, Email, Address, First_Name, Last_Name) VALUES (?,?,?,?,?);";
+String sql4 = "INSERT INTO customers (User_Id, Email) VALUES (?,?);";
 psmt = connection.prepareStatement(sql4);
 psmt.setInt(1, userID);
 psmt.setString(2, email);
-psmt.setString(3, address);
-psmt.setString(4, firstName);
-psmt.setString(5, lastName);
 psmt.executeUpdate();
 
 session = request.getSession();
 session.setAttribute("sessUserID", userID);
 session.setAttribute("sessUserRole", userRole);
 
-path = "../customer/membersPage.jsp";
-session.setAttribute("sessUserID", userID);
-session.setAttribute("sessUserRole", userRole);
+path = "../customer/membersPage.jsp?userID=" + userID;
 response.sendRedirect(path);
 
 connection.close();

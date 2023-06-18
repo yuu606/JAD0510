@@ -15,7 +15,7 @@ Description: ST0510/JAD CA1 Assignment
 -->
 <body>
 <div class="sticky-top row"  style="background-color: rgb(52, 78, 65);">
-<nav class="navbar navbar-expand-lg">
+<nav class="navbar navbar-expand-lg" data-bs-theme="dark">
   <div class="container-fluid">
     <a style="font-family: Copperplate, fantasy; color: white; padding: 5px;" class="navbar-brand">Bookly</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

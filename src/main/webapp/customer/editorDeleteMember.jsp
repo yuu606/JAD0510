@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@page import="java.sql.*"%>
+<%@page import="Servlets.*"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,19 +15,12 @@
 	int UserId = (int) session.getAttribute("sessUserID");
 	String Editing = request.getParameter("submit");
 	try {
-		// Step1: Load JDBC Driver
-		Class.forName("com.mysql.jdbc.Driver");
-
-		// Step 2: Define Connection URL
-		String connURL = "jdbc:mysql://localhost/jad?user=root&password=urM@ther69420&serverTimezone=UTC";
-
-		// Step 3: Establish connection to URL
-		Connection conn = DriverManager.getConnection(connURL);
+		Connection conn = DBConnect.getConnectionToDatabase();
 		Statement stmt = conn.createStatement();
 		String sqlStr;
 		out.print(Editing);
 		if (Editing.equals("Delete")) {
-			sqlStr = "DELETE from jad.users WHERE User_Id = ?";
+			sqlStr = "delete from jad.users where User_Id = ?";
 			PreparedStatement pstmt = conn.prepareStatement(sqlStr);
 			pstmt.setInt(1, UserId);
 			int count = pstmt.executeUpdate();

@@ -59,6 +59,7 @@ if (request.getParameter("deletedBook").equals("true")){
 			</table>
 	<%	} 
 }
+connection.close();
 %>
 
 </body>
