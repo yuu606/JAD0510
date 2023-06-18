@@ -59,6 +59,7 @@ public class UploadImageServlet extends HttpServlet {
 		    for (Part part : request.getParts()) {
 		      part.write("C:\\Users\\chong\\eclipse-workspace\\JAD_Assignment1\\src\\main\\webapp\\Images\\" + fileName);
 		    }
+		    response.sendRedirect("admin/addBookForm.jsp");
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}

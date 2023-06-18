@@ -111,7 +111,6 @@
 					</tr>
 				</thead>
 				<tr>
-					<td><img src="../Images/<%=isbn %>.jpg"/></td>
 					<td><%=isbn%></td>
 					<td><%=Title%></td>
 					<td><%=Author%></td>

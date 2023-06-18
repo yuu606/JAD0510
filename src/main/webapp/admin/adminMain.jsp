@@ -59,11 +59,6 @@ Description: ST0510/JAD CA1 Assignment
 						<div class="p-2 flex-grow-1">
 							<h3 style="font-family: Copperplate, fantasy; color: white; padding: 5px;">Bookly - Admin</h3>
 						</div>
-						<div class="p-2" style="margin: 10px;">
-							<button class="btn btn-success  text-nowrap"
-								style="font-family: Monaco, monospace; font-weight: bold;"
-								onclick="window.location.href='adminMain.jsp'">Admin Home</button>
-						</div>
 						<div class="p-2" style="margin:10px;">
 							<button class="btn btn-success  text-nowrap"
 							style="font-family: Monaco, monospace; font-weight: bold;"
@@ -130,7 +125,7 @@ Description: ST0510/JAD CA1 Assignment
 								 	<td><%=Rating %></td>
 								 	<td><%=Description %></td>
 								 	<td><a role="button" href="editBook.jsp?isbn=<%= isbn %>">Edit</a></td>
-								 	<td><a role="button" href="manageBooks.jsp?command=delete&isbn=<%= isbn %>">Delete</a></td>
+								 	<td><a role="button" href="manageBooks.jsp?command=delete&ISBN=<%= isbn %>">Delete</a></td>
 								 </tr>
 							<% } 
 							connection.close();
@@ -187,8 +182,8 @@ Description: ST0510/JAD CA1 Assignment
 								 	<td><%=Address %></td>
 								 	<td><%=Username %></td>
 								 	<td><%=Password %></td>
-								 	<td><a role="button" href="editBook.jsp?userID=<%=userID %>&custID=<%=customerID %>">Edit</a></td>
-								 	<td><a role="button" href="manageUsers.jsp?command=delete&custID=<%=customerID %>">Delete</a></td>
+								 	<td><a role="button" href="editCustomer.jsp?userID=<%=userID %>&custID=<%=customerID %>">Edit</a></td>
+								 	<td><a role="button" href="manageUsers.jsp?command=delete&userID=<%=userID %>">Delete</a></td>
 								 </tr>
 							<% } 
 							connection.close();

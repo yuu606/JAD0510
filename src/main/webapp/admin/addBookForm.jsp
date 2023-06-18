@@ -66,53 +66,53 @@ Description: ST0510/JAD CA1 Assignment
 			<table class="table table-bordered table-hover">
 				<tr>
 					<td>ISBN:</td>
-					<td><input class="form-control" type="text" name="ISBN"></td>
+					<td><input class="form-control" type="text" name="ISBN"
+					required="required" placeholder="ISBN"></td>
 				</tr>
 				<tr>
 					<td>Title:</td>
-					<td><input class="form-control" type="text" name="Title"></td>
+					<td><input class="form-control" type="text" name="Title"
+					required="required" placeholder="Title"></td>
 				</tr>
 				<tr>
 					<td>Author:</td>
-					<td><input class="form-control" type="text" name="Author"></td>
+					<td><input class="form-control" type="text" name="Author"
+					required="required" placeholder="Author"></td>
 				</tr>
 				<tr>
 					<td>Price:</td>
-					<td><input class="form-control" type="number" step="0.01" name="Price" min="0"></td>
+					<td><input class="form-control" type="number" step="0.01" name="Price" min="0"
+					required="required" placeholder="Price"></td>
 				</tr>
 				<tr>
 					<td>Quantity:</td>
-					<td><input class="form-control" type="number" name="Quantity" min="0"></td>
+					<td><input class="form-control" type="number" name="Quantity" min="0"
+					required="required" placeholder="Quantity"></td>
 				</tr>
 				<tr>
 					<td>Publisher:</td>
-					<td><input class="form-control" type="text" name="Publisher"></td>
+					<td><input class="form-control" type="text" name="Publisher"
+					required="required" placeholder="Publisher"></td>
 				</tr>
 				<tr>
 					<td>Publication Date:</td>
-					<td><input class="form-control" type="date"
-						name="publicationDate"></td>
+					<td><input class="form-control" type="date" name="publicationDate"
+					required="required" placeholder="Publication Date"></td>
 				</tr>
 				<tr>
 					<td>Genre ID:</td>
-					<td><input class="form-control" type="number" name="genreID"  min="1" max="3"></td>
+					<td><input class="form-control" type="number" name="genreID"  min="1" max="3"
+					required="required" placeholder="Genre ID"></td>
 				</tr>
 				<tr>
 					<td>Rating:</td>
-					<td><input class="form-control" type="number" name="Rating"  min="0" max="5" step="0.1"></td>
+					<td><input class="form-control" type="number" name="Rating"  min="0" max="5" step="0.1"
+					required="required" placeholder="Rating"></td>
 				</tr>
 				<tr>
 					<td>Description:</td>
-					<td><textarea class="form-control"
-						name="Description"></textarea>
-				</tr>
-				<tr>
-					<td>Image File:</td>
-					<td><input class="form-control" type="file" name="imageFile" /></td>
-				</tr>
-				<tr>
-					<td>Image Reference:</td>
-					<td><input class="form-control" type="text" name="imageRef"></td>
+					<td><textarea class="form-control" name="Description"
+					required="required" placeholder="Description"></textarea>
 				</tr>
 				<tr>
 					<td><input class="btn btn-success" type="submit"
