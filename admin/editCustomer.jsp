@@ -61,7 +61,7 @@
 	int custID1 = Integer.parseInt(request.getParameter("custID"));
 	%>
 	<form name="Edit"
-		action="${pageContext.request.contextPath}/ManageBooksServlet?command=update&custID1=<%=custID1 %>&userID1=<%=custID1 %>"
+		action="manageUsers.jsp?command=update&custID1=<%=custID1 %>&userID1=<%=custID1 %>"
 		method="post">
 		<div class="container-fluid p-3">
 			<table class="table table-bordered table-hover">
@@ -88,7 +88,7 @@
 				</tr>
 				<tr>
 					<td>User ID:</td>
-					<td><input class="form-control" type="text" name="custID2"
+					<td><input class="form-control" type="text" name="userID2"
 						value="<%=userID1%>"></td>
 				</tr>
 				<tr>

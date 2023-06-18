@@ -19,7 +19,7 @@
 <body>
 	<div class="container-fluid">
 		<%
-		if (session.getAttribute("sessUserID") == null || !session.getAttribute("sessUserRole").equals(2)){ 		%>
+		if (session.getAttribute("sessUserID") == null || !session.getAttribute("sessUserRole").equals(2)){ %>
 		<div class="sticky-top row">
 			<nav class="navbar" style="background-color: rgb(52, 78, 65);">
 				<div class="container-fluid d-flex">

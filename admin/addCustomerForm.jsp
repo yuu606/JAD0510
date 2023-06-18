@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
@@ -55,7 +55,7 @@
 	</div>
 	<!-- -----------------END OF HEADER-----------------  -->
 	<form name="Edit"
-		action="${pageContext.request.contextPath}/ManageUsersServlet?command=add"
+		action="manageUsers.jsp?command=add"
 		method="post">
 		<div class="container-fluid p-3">
 			<table class="table table-bordered table-hover">
@@ -96,4 +96,5 @@
 	</div>
 	<%@include file="../footer.html" %>
 </body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 </html>
