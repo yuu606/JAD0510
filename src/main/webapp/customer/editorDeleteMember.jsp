@@ -9,7 +9,6 @@
 <title>Processing</title>
 </head>
 <body>
-	<%@ page import="java.sql.*"%>
 
 	<%
 	int UserId = (int) session.getAttribute("sessUserID");

@@ -55,6 +55,7 @@ try {
 	<main class="flex-shrink-0">
 		<div class="container-fluid">
 			<%@ include file="header.jsp"%>
+			<%if (session.getAttribute("sessUserID") != null) { %>
 			<div class="d-flex align-items-center mb-2 justify-content-center height">
 				<div class="p-2 w-100">
 					<form name="memberprofile">
@@ -108,10 +109,15 @@ try {
 					</script>
 				</div>
 			</div>
+			<%} else { %>
+			<div class="row">
+				<h2>You are not logged in as a customer</h2>
+			</div>
+			<% } %>
 		</div>
 	</main>
 <%@include file="../footer.html"%>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 </body>
 <%
 // Step 7: Close connection

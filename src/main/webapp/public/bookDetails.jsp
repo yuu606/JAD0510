@@ -1,17 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@page import="java.sql.*"%>
+<%@page import="Servlets.*"%>
+
 <!DOCTYPE html>
-<html  class="h-100">
+<html class="h-100">
 <head>
 <meta charset="UTF-8">
-	<title>Book Details</title>
-	
-	<!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Book Details</title>
 
-    <!-- Bootstrap CSS -->
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Bootstrap CSS -->
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
 	rel="stylesheet"
@@ -34,17 +36,7 @@ String searched = request.getParameter("search");
 
 ISBN = request.getParameter("ISBN");
 try {
-	// Step1: Load JDBC Driver
-	Class.forName("com.mysql.jdbc.Driver");
-
-	// Step 2: Define Connection URL
-	String connURL = "jdbc:mysql://localhost/jad?user=root&password=urM@ther69420&serverTimezone=UTC";
-
-	// Step 3: Establish connection to URL
-	Connection conn = DriverManager.getConnection(connURL);
-	// Step 4: Create Statement object
-	Statement stmt = conn.createStatement();
-	// Step 5: Execute SQL Command
+	Connection conn = DBConnect.getConnectionToDatabase();
 	String sqlStr = "SELECT b.ISBN, b.Title, b.Author, b.Price, b.Quantity, b.Publisher, b.Publication_Date, b.Rating, g.genre_name,b.Description FROM jad.books b, jad.genre g where b.ISBN = ?  and  b.Genre_Id = g.genre_id;";
 	PreparedStatement pstmt = conn.prepareStatement(sqlStr);
 	pstmt.setString(1, ISBN);
@@ -77,18 +69,21 @@ try {
 		<div class="container-fluid">
 			<div class="sticky-top">
 				<%@include file="header.jsp"%>
-				<div class="px-3 pt-2 text-success-emphasis bg-success-subtle border border-success-subtle fw-bold">
-					Now viewing:
-					<div id="Title" class="fw-normal" style="display: inline"><%=Title%></div>
-					BY
-					<div id="Author" class="fw-normal" style="display: inline"><%=Author%></div>
+				<div class="row">
+					<div
+						class="px-3 p-2 text-success-emphasis bg-success-subtle border fw-bold">
+						Now viewing:
+						<div id="Title" class="fw-normal" style="display: inline"><%=Title%></div>
+						BY
+						<div id="Author" class="fw-normal" style="display: inline"><%=Author%></div>
+					</div>
 				</div>
 			</div>
-			
 			<article class="container-fluid p-4 px-5">
 				<div class="row">
 					<div class="col-3">
-						<img src='../Images/<%=ISBN%>.jpg' style="width: 90%; height: auto;">
+						<img src='../Images/<%=ISBN%>.jpg'
+							style="width: 90%; height: auto;">
 					</div>
 					<div class="col-9">
 						<!--part 1 -->
@@ -98,7 +93,8 @@ try {
 								onclick="history.back()">Back</button>
 							<button class="btn btn-success  text-nowrap col m-2"
 								style="font-family: Monaco, monospace; font-weight: bold;"
-								onclick="window.location.href ='../MemberInfo/shoppingCart.jsp'">Add to Cart</button>
+								onclick="window.location.href ='../customer/shoppingCart.jsp'">Add
+								to Cart</button>
 						</div>
 						<div class="row"
 							style="border-bottom: 1px solid; border-color: darkolivegreen;">
@@ -118,7 +114,7 @@ try {
 								Quantity:
 								<%=Quantity%></h5>
 						</div>
-			
+
 						<!--part 2 -->
 						<div class="row"
 							style="border-bottom: 1px solid; border-color: darkolivegreen; margin-top: 5%;">
@@ -159,10 +155,15 @@ try {
 			%>
 		</div>
 	</main>
-<%@include file="../footer.html"%>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-<% if (request.getParameter("errCode")!=null && (request.getParameter("errCode")).equals("404")){
-	out.print("sorry, we didn't manage to find anything that matched what you typed.");
-} %>
+	<%@include file="../footer.html"%>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+		crossorigin="anonymous"></script>
+	<%
+	if (request.getParameter("errCode") != null && (request.getParameter("errCode")).equals("404")) {
+		out.print("sorry, we didn't manage to find anything that matched what you typed.");
+	}
+	%>
 </body>
 </html>

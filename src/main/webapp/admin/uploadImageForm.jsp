@@ -4,6 +4,13 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+	crossorigin="anonymous">	
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+	
 <title>Insert title here</title>
 </head>
 <!-- 
@@ -15,7 +22,8 @@ Description: ST0510/JAD CA1 Assignment
 -->
 <body>
 	<div class="">
-	<% if (session.getAttribute("sessUserID") != null && (int)session.getAttribute("sessUserID") != 2){ %>
+<% 
+	if (session.getAttribute("sessUserID") == null || !session.getAttribute("sessUserRole").equals(2)){ %>
 		<div class="sticky-top row">
 			<nav class="navbar" style="background-color: rgb(52, 78, 65);">
 					<div class="container-fluid d-flex">
@@ -46,11 +54,11 @@ Description: ST0510/JAD CA1 Assignment
 					</div>
 				</nav>
 			</div>
+			<!-- -----------------END OF HEADER-----------------  -->
 	<form method="post" action="${pageContext.request.contextPath}/UploadImageServlet" enctype="multipart/form-data">
 	    <input type="file" name="file" />
 	    <input type="submit" value="Upload" />
-	</form>
+	</form><% }%>
 	</div>
-	<%} %>
 </body>
 </html>

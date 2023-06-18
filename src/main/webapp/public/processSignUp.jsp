@@ -58,6 +58,7 @@ psmt.executeUpdate();
 session = request.getSession();
 session.setAttribute("sessUserID", userID);
 session.setAttribute("sessUserRole", userRole);
+session.setMaxInactiveInterval(15*60);
 
 path = "../customer/membersPage.jsp?userID=" + userID;
 response.sendRedirect(path);

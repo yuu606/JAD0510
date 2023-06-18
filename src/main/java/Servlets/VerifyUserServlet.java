@@ -65,6 +65,7 @@ public class VerifyUserServlet extends HttpServlet {
 				HttpSession session = request.getSession();
 				session.setAttribute("sessUserID", userID);
 				session.setAttribute("sessUserRole", userRole);
+				session.setMaxInactiveInterval(15*60);
 				
 				if (userRole == 1) {
 					String path = "customer/membersPage.jsp";

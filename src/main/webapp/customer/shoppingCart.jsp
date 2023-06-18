@@ -57,8 +57,8 @@ try {
 		<div class="container-fluid">	
 			<div class="sticky-top">
 				<%@ include file="header.jsp"%>
-				<div
-					class="px-3 pt-2 text-success-emphasis bg-success-subtle border border-success-subtle row">
+				<%if (session.getAttribute("sessUserID") != null) { %>
+				<div class="px-3 pt-2 text-success-emphasis bg-success-subtle border border-success-subtle row">
 						<div class="col">
 							<h1 class="display-6">Total Cost: $121.96</h1>
 						</div>
@@ -71,14 +71,20 @@ try {
 								Out</button>
 					</div>
 				</div>
-			</div>
-			<article class="container-fluid my-2">
-				<div class=" row justify-content-around g-0" id="Results">
-					<%=results%>
 				</div>
-			</article>
+				<article class="container-fluid my-2">
+					<div class=" row justify-content-around g-0" id="Results">
+						<%=results%>
+					</div>
+				</article>
+				<%} else { %>
+				<div class="row">
+					<h2>You are not logged in as a customer</h2>
+				</div>
+				<% } %>
 		</div>
 	</main>
 <%@ include file="../footer.html" %>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 </body>
 </html>

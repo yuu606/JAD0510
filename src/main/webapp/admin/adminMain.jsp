@@ -125,7 +125,7 @@ Description: ST0510/JAD CA1 Assignment
 								 	<td><%=Rating %></td>
 								 	<td><%=Description %></td>
 								 	<td><a role="button" href="editBook.jsp?isbn=<%= isbn %>">Edit</a></td>
-								 	<td><a role="button" href="${pageContext.request.contextPath}/ManageBooksServlet?command=delete&isbn=<%= isbn %>">Delete</a></td>
+								 	<td><a role="button" href="manageBooks.jsp?command=delete&isbn=<%= isbn %>">Delete</a></td>
 								 </tr>
 							<% } 
 							connection.close();
@@ -182,7 +182,7 @@ Description: ST0510/JAD CA1 Assignment
 								 	<td><%=Username %></td>
 								 	<td><%=Password %></td>
 								 	<td><a role="button" href="editBook.jsp?userID=<%=userID %>&custID=<%=customerID %>">Edit</a></td>
-								 	<td><a role="button" href="${pageContext.request.contextPath}/ManageUsersServlet?command=delete&custID=<%=customerID %>">Delete</a></td>
+								 	<td><a role="button" href="manageUsers.jsp?command=delete&custID=<%=customerID %>">Delete</a></td>
 								 </tr>
 							<% } 
 							connection.close();
@@ -198,4 +198,5 @@ Description: ST0510/JAD CA1 Assignment
 	</div>
 	<%@include file="../footer.html" %>
 </body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 </html>
