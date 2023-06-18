@@ -3,7 +3,7 @@
 <%@page import="java.sql.*"%>
 <%@page import="Servlets.*"%>
 <!DOCTYPE html>
-<html>
+<html class="h-100">
 <head>
 
 <meta charset="UTF-8">
@@ -51,66 +51,70 @@ try {
 	Password = rs.getString("Password");
 %>
 
-<body>
-
-	<div class="container-fluid">
-		<%@ include file="header.jsp"%>
-		<div class="m-5">
-			<form action="editorDeleteMember.jsp" name="send" method="post"
-				class="row row-cols-2">
-				<div class="col">
-					<div class="input-group mb-3 ">
-						<span class="input-group-text">First Name:</span> <input
-							type="text" class="form-control" name="first_name"
-							value='<%=First_Name%>'>
+<body class="d-flex flex-column h-100">
+	<main class="flex-shrink-0">
+		<div class="container-fluid">
+			<%@ include file="header.jsp"%>
+				<form action="editorDeleteMember.jsp" name="send" method="post"
+					class="d-flex align-items-center mb-2 justify-content-center height">
+					<div class="p-2 w-100">
+						<div class="input-group mb-3">
+							<span class="input-group-text">First Name:</span> <input
+								type="text" class="form-control" name="first_name"
+								value='<%=First_Name%>'>
+						</div>
+						<div class="input-group mb-3">
+							<span class="input-group-text">Last Name:</span> <input
+								type="text" class="form-control" name="last_name"
+								value='<%=Last_Name%>'>
+						</div>
+						<div>
+							<br>
+						</div>
+						<div class="input-group mb-3">
+							<span class="input-group-text">Email:</span> <input type="email"
+								class="form-control" name="Email" value='<%=Email%>'>
+						</div>
+						<div class="input-group mb-3">
+							<span class="input-group-text">Address:</span> <input type="text"
+								class="form-control" name="Address" value='<%=Address%>'>
+						</div>
+						<div>
+							<br>
+						</div>
+						<div class="input-group mb-3">
+							<span class="input-group-text">Username:</span> <input type="text"
+								class="form-control" name="Username" value='<%=Username%>'>
+						</div>
+						<div class="input-group mb-3">
+							<span class="input-group-text">Password:</span> <input type="text"
+								class="form-control" name="Password" value='<%=Password%>'>
+						</div>
 					</div>
-					<div class="input-group mb-3">
-						<span class="input-group-text">Last Name:</span> <input
-							type="text" class="form-control" name="last_name"
-							value='<%=Last_Name%>'>
+					<div class="p-2 w-100">
+						<input class="btn btn-secondary col-12 text-nowrap mb-3 "
+							type="submit" name="submit"
+							value="confirm edit">
+	
+						<button class="btn btn-secondary  text-nowrap col-12 "
+							type='button' onclick="window.location.href='membersPage.jsp'">Back</button>
 					</div>
-
-					<div>
-						<br>
-					</div>
-					<div class="input-group mb-3">
-						<span class="input-group-text">Email:</span> <input type="email"
-							class="form-control" name="Email" value='<%=Email%>'>
-					</div>
-					<div class="input-group mb-3">
-						<span class="input-group-text">Address:</span> <input type="text"
-							class="form-control" name="Address" value='<%=Address%>'>
-					</div>
-					<div>
-						<br>
-					</div>
-					<div class="input-group mb-3">
-						<span class="input-group-text">Username:</span> <input type="text"
-							class="form-control" name="Username" value='<%=Username%>'>
-					</div>
-					<div class="input-group mb-3">
-						<span class="input-group-text">Password:</span> <input type="text"
-							class="form-control" name="Password" value='<%=Password%>'>
-					</div>
-				</div>
-				<div class="col">
-					<input class="btn btn-secondary col-12 text-nowrap mb-3 "
-						style="margin-top: 23%" type="submit" name="submit"
-						value="confirm edit">
-
-					<button class="btn btn-secondary  text-nowrap col-12 "
-						type='button' onclick="window.location.href='membersPage.jsp'">Back</button>
-				</div>
-			</form>
-		</div>
-	</div>
+				</form>
+			</div>
+	</main>
+	<%@include file="../footer.html"%>
 </body>
 <%
 // Step 7: Close connection
 conn.close();
 } catch (Exception e) {
-out.println("Error :" + e);
+System.out.println("Error :" + e);
 }
 %>
-<%@include file="../footer.html"%>
 </html>
+
+<style>
+.height{
+	min-height: 590px;
+}
+</style>

@@ -58,8 +58,8 @@ Description: ST0510/JAD CA1 Assignment
 			</div>
 		</div>
 	</main>
-	<%@include file="../footer.html" %>
-		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<%@include file="../footer.html" %>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
 <% if (request.getParameter("errCode")!=null && (request.getParameter("errCode")).equals("404")){
 	out.print("sorry, we didn't manage to find anything that matched what you typed.");

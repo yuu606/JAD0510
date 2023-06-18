@@ -3,7 +3,7 @@
 <%@page import="java.sql.*"%>
 <%@page import="Servlets.*"%>
 <!DOCTYPE html>
-<html>
+<html class="h-100">
 <head>
 <meta charset="UTF-8">
 
@@ -52,34 +52,33 @@ try {
 }
 %>
 
-<body>
-<div class="container-fluid">
-		
-	<div class="sticky-top ">
-	<%@ include file="header.jsp"%>
-		<div
-			class="px-3 pt-2 text-success-emphasis bg-success-subtle border border-success-subtle row">
-				<div class="col">
-					<h1 class="display-6">Total Cost: $121.96</h1>
+<body class="d-flex flex-column h-100">
+	<main class="flex-shrink-0">
+		<div class="container-fluid">	
+			<div class="sticky-top">
+				<%@ include file="header.jsp"%>
+				<div
+					class="px-3 pt-2 text-success-emphasis bg-success-subtle border border-success-subtle row">
+						<div class="col">
+							<h1 class="display-6">Total Cost: $121.96</h1>
+						</div>
+						<div class="col">
+							<h1 class="display-6">You have: $300.50</h1>
+						</div>
+						<div class="col pb-2">
+							<button class="btn btn-secondary  text-nowrap col-12"
+								style="font-family: Monaco, monospace; font-weight: bold;">Check
+								Out</button>
+					</div>
 				</div>
-				<div class="col">
-					<h1 class="display-6">You have: $300.50</h1>
-				</div>
-				<div class="col pb-2">
-					<button class="btn btn-secondary  text-nowrap col-12"
-						style="font-family: Monaco, monospace; font-weight: bold;">Check
-						Out</button>
-				
 			</div>
+			<article class="container-fluid my-2">
+				<div class=" row justify-content-around g-0" id="Results">
+					<%=results%>
+				</div>
+			</article>
 		</div>
-	</div>
-	<article class="container-fluid my-2">
-		<div class=" row justify-content-around g-0" id="Results">
-			<%=results%>
-
-		</div>
-		</article>
-		</div>
-		<%@ include file="../footer.html" %>
+	</main>
+<%@ include file="../footer.html" %>
 </body>
 </html>

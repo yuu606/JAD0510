@@ -47,7 +47,7 @@ try {
 	integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
 	crossorigin="anonymous">
 </head>
-<body>
+<body class="d-flex flex-column h-100">
 	<!-- 
 =======================================	
 Author: Chong Yu Lin
@@ -55,9 +55,10 @@ Date:  2023
 Description: ST0510/JAD CA1 Assignment
 =======================================
 -->
-	<div class="d-flex flex-column h-100">
+<main class="flex-shrink-0">
+	<div class="container-fluid">
 		<%@ include file="header.jsp"%>
-		<main class="flex-shrink-0">
+		<div class="row align-items-center height">
 			<div class="container-fluid d-flex flex-column">
 				<article class="container-fluid p-2">
 					<div class=" row justify-content-around g-0" id="Results">
@@ -65,9 +66,10 @@ Description: ST0510/JAD CA1 Assignment
 					</div>
 				</article>
 			</div>
-		</main>
-		<%@include file="../footer.html"%>
+		</div>
 	</div>
+</main>
+<%@include file="../footer.html"%>
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
