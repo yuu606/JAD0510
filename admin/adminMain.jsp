@@ -33,6 +33,11 @@ Date:  2023
 Description: ST0510/JAD CA1 Assignment
 =======================================
 -->
+<style>
+td { font-size: 14px }
+th{font-size:17px}
+</style>
+
 <div class="container-fluid">
 
 	<% 
@@ -69,7 +74,7 @@ Description: ST0510/JAD CA1 Assignment
 			</div>
 			<!-- -----------------END OF HEADER-----------------  -->
 		<div class="row align-items-center height">
-			<div class="container-fluid d-flex flex-column">
+			<div class="container-fluid d-flex flex-column px-5 py-2">
 				<div class="row">
 					<button class="btn btn-success text-nowrap"
 					style="font-family: Monaco, monospace; font-weight: bold;"
@@ -124,8 +129,8 @@ Description: ST0510/JAD CA1 Assignment
 								 	<td><%=genreID %></td>
 								 	<td><%=Rating %></td>
 								 	<td><%=Description %></td>
-								 	<td><a role="button" href="editBook.jsp?isbn=<%= isbn %>">Edit</a></td>
-								 	<td><a role="button" href="manageBooks.jsp?command=delete&ISBN=<%= isbn %>">Delete</a></td>
+								 	<td><a role="button" href="editBook.jsp?isbn=<%= isbn %>"  class="btn btn-primary">Edit</a></td>
+								 	<td><a role="button" href="manageBooks.jsp?command=delete&ISBN=<%= isbn %>"  class="btn btn-primary">Delete</a></td>
 								 </tr>
 							<% } 
 							connection.close();
